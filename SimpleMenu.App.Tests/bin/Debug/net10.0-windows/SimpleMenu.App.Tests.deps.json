@@ -1,0 +1,39 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v10.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v10.0": {
+      "SimpleMenu.App.Tests/1.0.0": {
+        "dependencies": {
+          "SimpleMenu.App": "1.0.0"
+        },
+        "runtime": {
+          "SimpleMenu.App.Tests.dll": {}
+        }
+      },
+      "SimpleMenu.App/1.0.0": {
+        "runtime": {
+          "SimpleMenu.App.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "SimpleMenu.App.Tests/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "SimpleMenu.App/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

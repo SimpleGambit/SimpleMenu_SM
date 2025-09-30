@@ -1,0 +1,419 @@
+<Window x:Class="SimpleMenu.App.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:SimpleMenu.App"
+        Title="SimpleMenu - 주간 식단 관리"
+        Height="860"
+        Width="1280"
+        MinHeight="760"
+        MinWidth="1120"
+        WindowStartupLocation="CenterScreen"
+        Background="#F4F6F8"
+        Closing="Window_Closing">
+    <Window.Resources>
+        <local:DecimalNumberConverter x:Key="DecimalNumberConverter" />
+        <Style TargetType="Button">
+            <Setter Property="MinHeight" Value="32" />
+            <Setter Property="Padding" Value="12,4" />
+            <Setter Property="Margin" Value="0,0,8,0" />
+        </Style>
+        <Style TargetType="TextBox">
+            <Setter Property="MinHeight" Value="30" />
+            <Setter Property="Padding" Value="6,3" />
+        </Style>
+        <Style TargetType="ComboBox">
+            <Setter Property="MinHeight" Value="30" />
+            <Setter Property="Padding" Value="4,2" />
+        </Style>
+        <Style TargetType="DataGrid">
+            <Setter Property="AutoGenerateColumns" Value="False" />
+            <Setter Property="CanUserAddRows" Value="False" />
+            <Setter Property="HeadersVisibility" Value="Column" />
+            <Setter Property="GridLinesVisibility" Value="Horizontal" />
+            <Setter Property="AlternatingRowBackground" Value="#FAFBFC" />
+            <Setter Property="RowHeaderWidth" Value="0" />
+        </Style>
+        <Style x:Key="SectionTitle" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="15" />
+            <Setter Property="FontWeight" Value="SemiBold" />
+            <Setter Property="Margin" Value="0,0,0,8" />
+        </Style>
+    </Window.Resources>
+
+    <DockPanel LastChildFill="True">
+        <Border DockPanel.Dock="Bottom" Background="#E7ECF2" Padding="12,6">
+            <Grid>
+                <TextBlock x:Name="StatusText" VerticalAlignment="Center" />
+                <TextBlock x:Name="StoragePathText" HorizontalAlignment="Right" VerticalAlignment="Center" Foreground="#4B5563" />
+            </Grid>
+        </Border>
+
+        <TabControl Margin="12">
+            <TabItem Header="재료">
+                <Grid Margin="0,10,0,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="340" />
+                        <ColumnDefinition Width="12" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Border Grid.Column="0" Background="White" BorderBrush="#D5DCE5" BorderThickness="1" Padding="12">
+                        <DockPanel>
+                            <StackPanel DockPanel.Dock="Top">
+                                <TextBlock Text="재료 목록" Style="{StaticResource SectionTitle}" />
+                                <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
+                                    <Button Content="새 재료" Click="NewIngredient_Click" />
+                                    <Button Content="저장" Click="SaveIngredient_Click" />
+                                    <Button Content="삭제" Click="DeleteIngredient_Click" />
+                                </StackPanel>
+                            </StackPanel>
+                            <DataGrid x:Name="IngredientsGrid" SelectionChanged="IngredientsGrid_SelectionChanged" IsReadOnly="True">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="이름" Binding="{Binding Name}" Width="*" />
+                                    <DataGridTextColumn Header="단위" Binding="{Binding BaseUnit}" Width="52" />
+                                    <DataGridTextColumn Header="100당 가격" Binding="{Binding PricePer100}" Width="92" />
+                                    <DataGridTextColumn Header="갱신일" Binding="{Binding LatestPriceDate}" Width="90" />
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </DockPanel>
+                    </Border>
+
+                    <Grid Grid.Column="2">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="220" />
+                        </Grid.RowDefinitions>
+
+                        <Border Grid.Row="0" Background="White" BorderBrush="#D5DCE5" BorderThickness="1" Padding="12" Margin="0,0,0,10">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="100" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="80" />
+                                    <ColumnDefinition Width="120" />
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Text="재료명" VerticalAlignment="Center" />
+                                <TextBox x:Name="IngredientNameBox" Grid.Column="1" Margin="0,0,12,0" />
+                                <TextBlock Grid.Column="2" Text="기준 단위" VerticalAlignment="Center" />
+                                <ComboBox x:Name="IngredientUnitBox" Grid.Column="3" SelectionChanged="IngredientUnitBox_SelectionChanged">
+                                    <ComboBoxItem Content="g" IsSelected="True" />
+                                    <ComboBoxItem Content="ml" />
+                                </ComboBox>
+                                <TextBlock Grid.Row="1" Text="메모" VerticalAlignment="Top" Margin="0,10,0,0" />
+                                <TextBox x:Name="IngredientMemoBox"
+                                         Grid.Row="1"
+                                         Grid.Column="1"
+                                         Grid.ColumnSpan="3"
+                                         Height="70"
+                                         Margin="0,8,0,0"
+                                         AcceptsReturn="True"
+                                         TextWrapping="Wrap"
+                                         VerticalScrollBarVisibility="Auto" />
+                            </Grid>
+                        </Border>
+
+                        <Border Grid.Row="1" Background="White" BorderBrush="#D5DCE5" BorderThickness="1" Padding="12" Margin="0,0,0,10">
+                            <DockPanel>
+                                <TextBlock DockPanel.Dock="Top" Text="영양 정보 - 기준 단위 100g/ml" Style="{StaticResource SectionTitle}" />
+                                <DataGrid x:Name="IngredientNutrientsGrid">
+                                    <DataGrid.Columns>
+                                        <DataGridTextColumn Header="구분" Binding="{Binding Group}" Width="72" IsReadOnly="True" />
+                                        <DataGridTextColumn Header="영양소" Binding="{Binding Name}" Width="150" IsReadOnly="True" />
+                                        <DataGridTextColumn Header="값" Binding="{Binding Value, Converter={StaticResource DecimalNumberConverter}, UpdateSourceTrigger=LostFocus}" Width="120" />
+                                        <DataGridTextColumn Header="단위" Binding="{Binding Unit}" Width="110" IsReadOnly="True" />
+                                    </DataGrid.Columns>
+                                </DataGrid>
+                            </DockPanel>
+                        </Border>
+
+                        <Border Grid.Row="2" Background="White" BorderBrush="#D5DCE5" BorderThickness="1" Padding="12">
+                            <DockPanel>
+                                <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Margin="0,0,0,8">
+                                    <TextBlock Text="가격 이력" Style="{StaticResource SectionTitle}" Width="120" />
+                                    <Button Content="가격 추가" Click="AddPrice_Click" />
+                                    <Button Content="선택 삭제" Click="RemovePrice_Click" />
+                                </StackPanel>
+                                <DataGrid x:Name="IngredientPricesGrid">
+                                    <DataGrid.Columns>
+                                        <DataGridTextColumn Header="날짜" Binding="{Binding Date, StringFormat=yyyy-MM-dd}" Width="120" />
+                                        <DataGridTextColumn Header="개당 무게/용량" Binding="{Binding TotalAmount, Converter={StaticResource DecimalNumberConverter}, UpdateSourceTrigger=LostFocus}" Width="120" />
+                                        <DataGridTextColumn Header="단위" Binding="{Binding Unit, UpdateSourceTrigger=PropertyChanged}" Width="70" />
+                                        <DataGridTextColumn Header="총 개수" Binding="{Binding TotalCount, Converter={StaticResource DecimalNumberConverter}, UpdateSourceTrigger=LostFocus}" Width="90" />
+                                        <DataGridTextColumn Header="비용" Binding="{Binding Cost, Converter={StaticResource DecimalNumberConverter}, UpdateSourceTrigger=LostFocus}" Width="100" />
+                                        <DataGridTextColumn Header="100g/ml당 가격" Binding="{Binding PricePer100, StringFormat=N0}" Width="120" IsReadOnly="True" />
+                                    </DataGrid.Columns>
+                                </DataGrid>
+                            </DockPanel>
+                        </Border>
+                    </Grid>
+                </Grid>
+            </TabItem>
+
+            <TabItem Header="메뉴">
+                <Grid Margin="0,10,0,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="360" />
+                        <ColumnDefinition Width="12" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Border Grid.Column="0" Background="White" BorderBrush="#D5DCE5" BorderThickness="1" Padding="12">
+                        <DockPanel>
+                            <StackPanel DockPanel.Dock="Top">
+                                <TextBlock Text="메뉴 목록" Style="{StaticResource SectionTitle}" />
+                                <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
+                                    <Button Content="새 메뉴" Click="NewMenu_Click" />
+                                    <Button Content="저장" Click="SaveMenu_Click" />
+                                    <Button Content="삭제" Click="DeleteMenu_Click" />
+                                </StackPanel>
+                            </StackPanel>
+                            <DataGrid x:Name="MenusGrid" SelectionChanged="MenusGrid_SelectionChanged" IsReadOnly="True">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="메뉴" Binding="{Binding Name}" Width="3*" />
+                                    <DataGridTextColumn Header="재료" Binding="{Binding IngredientCount}" Width="44" />
+                                    <DataGridTextColumn Header="가격" Binding="{Binding Price}" Width="82" />
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </DockPanel>
+                    </Border>
+
+                    <Grid Grid.Column="2">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="185" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="190" />
+                        </Grid.RowDefinitions>
+
+                        <Border Grid.Row="0" Background="White" BorderBrush="#D5DCE5" BorderThickness="1" Padding="12" Margin="0,0,0,10">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="80" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="220" />
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Text="메뉴명" VerticalAlignment="Center" />
+                                <TextBox x:Name="MenuNameBox" Grid.Column="1" Margin="0,0,12,0" />
+                                <TextBlock x:Name="MenuPriceText" Grid.Column="2" VerticalAlignment="Center" FontWeight="SemiBold" />
+                            </Grid>
+                        </Border>
+
+                        <Border Grid.Row="1" Background="White" BorderBrush="#D5DCE5" BorderThickness="1" Padding="12" Margin="0,0,0,10">
+                            <DockPanel>
+                                <TextBlock DockPanel.Dock="Top" Text="레시피" Style="{StaticResource SectionTitle}" />
+                                <TextBox x:Name="RecipeBox" AcceptsReturn="True" VerticalScrollBarVisibility="Auto" TextWrapping="Wrap" />
+                            </DockPanel>
+                        </Border>
+
+                        <Border Grid.Row="2" Background="White" BorderBrush="#D5DCE5" BorderThickness="1" Padding="12" Margin="0,0,0,10">
+                            <DockPanel>
+                                <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Margin="0,0,0,8">
+                                    <TextBlock Text="메뉴 재료" Style="{StaticResource SectionTitle}" Width="110" />
+                                    <ComboBox x:Name="MenuIngredientPicker" DisplayMemberPath="Name" SelectedValuePath="Id" Width="220" Margin="0,0,8,0" SelectionChanged="MenuIngredientPicker_SelectionChanged" />
+                                    <TextBox x:Name="MenuIngredientAmountBox" Width="90" Margin="0,0,8,0" />
+                                    <ComboBox x:Name="MenuIngredientUnitBox" Width="70" Margin="0,0,8,0">
+                                        <ComboBoxItem Content="g" IsSelected="True" />
+                                        <ComboBoxItem Content="ml" />
+                                    </ComboBox>
+                                    <Button Content="추가" Click="AddMenuIngredient_Click" />
+                                    <Button Content="선택 삭제" Click="RemoveMenuIngredient_Click" />
+                                </StackPanel>
+                                <DataGrid x:Name="MenuIngredientsGrid"
+                                          IsReadOnly="False"
+                                          CellEditEnding="MenuIngredientsGrid_CellEditEnding">
+                                    <DataGrid.Columns>
+                                        <DataGridTextColumn Header="재료" Binding="{Binding IngredientName}" Width="*" IsReadOnly="True" />
+                                        <DataGridTextColumn x:Name="MenuIngredientAmountColumn" Header="사용량" Binding="{Binding Amount, Converter={StaticResource DecimalNumberConverter}, UpdateSourceTrigger=LostFocus}" Width="90" />
+                                        <DataGridTextColumn Header="단위" Binding="{Binding Unit}" Width="60" IsReadOnly="True" />
+                                        <DataGridTextColumn Header="예상 비용" Binding="{Binding Price}" Width="110" IsReadOnly="True" />
+                                        <DataGridTextColumn Header="열량" Binding="{Binding Energy}" Width="100" IsReadOnly="True" />
+                                    </DataGrid.Columns>
+                                </DataGrid>
+                            </DockPanel>
+                        </Border>
+
+                        <Border Grid.Row="3" Background="White" BorderBrush="#D5DCE5" BorderThickness="1" Padding="12">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="12" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <DockPanel Grid.Column="0">
+                                    <TextBlock DockPanel.Dock="Top" Text="필수 영양소 합계" Style="{StaticResource SectionTitle}" />
+                                    <DataGrid x:Name="MenuRequiredSummaryGrid" IsReadOnly="True">
+                                        <DataGrid.Columns>
+                                            <DataGridTextColumn Header="영양소" Binding="{Binding Name}" Width="*" />
+                                            <DataGridTextColumn Header="값" Binding="{Binding Amount}" Width="100" />
+                                            <DataGridTextColumn Header="단위" Binding="{Binding Unit}" Width="90" />
+                                        </DataGrid.Columns>
+                                    </DataGrid>
+                                </DockPanel>
+                                <DockPanel Grid.Column="2">
+                                    <TextBlock DockPanel.Dock="Top" Text="상세 영양소 합계" Style="{StaticResource SectionTitle}" />
+                                    <DataGrid x:Name="MenuDetailSummaryGrid" IsReadOnly="True">
+                                        <DataGrid.Columns>
+                                            <DataGridTextColumn Header="영양소" Binding="{Binding Name}" Width="*" />
+                                            <DataGridTextColumn Header="값" Binding="{Binding Amount}" Width="100" />
+                                            <DataGridTextColumn Header="단위" Binding="{Binding Unit}" Width="90" />
+                                        </DataGrid.Columns>
+                                    </DataGrid>
+                                </DockPanel>
+                            </Grid>
+                        </Border>
+                    </Grid>
+                </Grid>
+            </TabItem>
+
+            <TabItem Header="주간 식단">
+                <Grid Margin="0,10,0,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="260" />
+                        <RowDefinition Height="12" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                    <Border Grid.Row="0" Background="White" BorderBrush="#D5DCE5" BorderThickness="1" Padding="12" Margin="0,0,0,10">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="식단 그룹" VerticalAlignment="Center" Margin="0,0,8,0" />
+                            <ComboBox x:Name="PlanGroupPicker" DisplayMemberPath="Name" SelectedValuePath="Id" Width="220" Margin="0,0,8,0" SelectionChanged="PlanGroupPicker_SelectionChanged" />
+                            <TextBlock Text="이름" VerticalAlignment="Center" Margin="4,0,8,0" />
+                            <TextBox x:Name="PlanGroupNameBox" Width="220" Margin="0,0,8,0" />
+                            <Button Content="새 그룹" Click="NewPlanGroup_Click" />
+                            <Button Content="저장" Click="SavePlanGroup_Click" />
+                            <Button Content="삭제" Click="DeletePlanGroup_Click" />
+                            <TextBlock x:Name="WeekTotalCostText" VerticalAlignment="Center" Margin="24,0,0,0" FontWeight="SemiBold" Foreground="#0F766E" />
+                        </StackPanel>
+                    </Border>
+
+                    <Grid Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="12" />
+                            <ColumnDefinition Width="420" />
+                        </Grid.ColumnDefinitions>
+                        <Border Grid.Column="0" Background="White" BorderBrush="#D5DCE5" BorderThickness="1" Padding="12">
+                            <DockPanel>
+                                <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Margin="0,0,0,8">
+                                    <TextBlock Text="주간 식단 항목" Style="{StaticResource SectionTitle}" Width="130" />
+                                    <TextBlock Text="표시 요일" VerticalAlignment="Center" Margin="0,0,8,0" />
+                                    <ComboBox x:Name="PlanDisplayDayPicker"
+                                              DisplayMemberPath="Label"
+                                              SelectedValuePath="DayIndex"
+                                              Width="130"
+                                              SelectionChanged="PlanDisplayDayPicker_SelectionChanged" />
+                                </StackPanel>
+                                <DataGrid x:Name="PlanItemsGrid"
+                                          IsReadOnly="False"
+                                          SelectionMode="Extended"
+                                          SelectionUnit="FullRow"
+                                          HorizontalScrollBarVisibility="Visible"
+                                          ScrollViewer.HorizontalScrollBarVisibility="Visible"
+                                          CellEditEnding="PlanItemsGrid_CellEditEnding">
+                                    <DataGrid.Columns>
+                                        <DataGridTextColumn Header="요일" Binding="{Binding DayLabel}" Width="90" MinWidth="90" IsReadOnly="True" />
+                                        <DataGridTextColumn Header="메뉴" Binding="{Binding MenuName}" Width="200" MinWidth="220" IsReadOnly="True" />
+                                        <DataGridTextColumn x:Name="PlanQuantityColumn" Header="인분" Binding="{Binding Quantity, Converter={StaticResource DecimalNumberConverter}, UpdateSourceTrigger=LostFocus}" Width="70" MinWidth="70" />
+                                        <DataGridTextColumn Header="예상 비용" Binding="{Binding Price}" Width="110" MinWidth="110" IsReadOnly="True" />
+                                        <DataGridTextColumn Header="열량" Binding="{Binding Energy}" Width="105" MinWidth="105" IsReadOnly="True" />
+                                        <DataGridTextColumn Header="탄수화물" Binding="{Binding Carbohydrate}" Width="110" MinWidth="110" IsReadOnly="True" />
+                                        <DataGridTextColumn Header="단백질" Binding="{Binding Protein}" Width="100" MinWidth="100" IsReadOnly="True" />
+                                        <DataGridTextColumn Header="지방" Binding="{Binding Fat}" Width="100" MinWidth="100" IsReadOnly="True" />
+                                        <DataGridTextColumn Header="포화지방" Binding="{Binding SaturatedFat}" Width="110" MinWidth="110" IsReadOnly="True" />
+                                        <DataGridTextColumn Header="식이섬유" Binding="{Binding Fiber}" Width="110" MinWidth="110" IsReadOnly="True" />
+                                        <DataGridTextColumn Header="당류" Binding="{Binding Sugars}" Width="100" MinWidth="100" IsReadOnly="True" />
+                                        <DataGridTextColumn Header="나트륨" Binding="{Binding Sodium}" Width="110" MinWidth="110" IsReadOnly="True" />
+                                    </DataGrid.Columns>
+                                </DataGrid>
+                            </DockPanel>
+                        </Border>
+
+                        <Border Grid.Column="2" Background="White" BorderBrush="#D5DCE5" BorderThickness="1" Padding="12">
+                            <StackPanel>
+                                <TextBlock Text="식단 추가" Style="{StaticResource SectionTitle}" />
+                                <TextBlock Text="메뉴" />
+                                <ComboBox x:Name="PlanMenuPicker" DisplayMemberPath="Name" SelectedValuePath="Id" Margin="0,2,0,8" />
+                                <TextBlock Text="인분" />
+                                <TextBox x:Name="PlanQuantityBox" Text="1" Margin="0,2,0,12" />
+                                <StackPanel Orientation="Horizontal">
+                                    <Button Content="추가" Click="AddPlanItem_Click" />
+                                    <Button Content="선택 삭제" Click="RemovePlanItem_Click" />
+                                </StackPanel>
+                            </StackPanel>
+                        </Border>
+                    </Grid>
+
+                    <Grid Grid.Row="3">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="12" />
+                            <ColumnDefinition Width="420" />
+                        </Grid.ColumnDefinitions>
+
+                        <Border Grid.Column="0" Background="White" BorderBrush="#D5DCE5" BorderThickness="1" Padding="12">
+                            <DockPanel>
+                                <TextBlock DockPanel.Dock="Top" Text="요일별 합계" Style="{StaticResource SectionTitle}" />
+                                <DataGrid x:Name="DailySummaryGrid" IsReadOnly="True" HorizontalScrollBarVisibility="Auto">
+                                    <DataGrid.Columns>
+                                        <DataGridTextColumn Header="요일" Binding="{Binding DayLabel}" Width="90" />
+                                        <DataGridTextColumn Header="메뉴 수" Binding="{Binding MenuCount}" Width="70" />
+                                        <DataGridTextColumn Header="비용" Binding="{Binding Price}" Width="90" />
+                                        <DataGridTextColumn Header="열량" Binding="{Binding Energy}" Width="90" />
+                                        <DataGridTextColumn Header="탄수화물" Binding="{Binding Carbohydrate}" Width="90" />
+                                        <DataGridTextColumn Header="단백질" Binding="{Binding Protein}" Width="90" />
+                                        <DataGridTextColumn Header="지방" Binding="{Binding Fat}" Width="90" />
+                                        <DataGridTextColumn Header="포화지방" Binding="{Binding SaturatedFat}" Width="90" />
+                                        <DataGridTextColumn Header="식이섬유" Binding="{Binding Fiber}" Width="90" />
+                                        <DataGridTextColumn Header="당류" Binding="{Binding Sugars}" Width="90" />
+                                        <DataGridTextColumn Header="나트륨" Binding="{Binding Sodium}" Width="90" />
+                                    </DataGrid.Columns>
+                                </DataGrid>
+                            </DockPanel>
+                        </Border>
+
+                        <Border Grid.Column="2" Background="White" BorderBrush="#D5DCE5" BorderThickness="1" Padding="12">
+                            <DockPanel>
+                                <TextBlock DockPanel.Dock="Top" Text="주간 평균과 일일 목표" Style="{StaticResource SectionTitle}" />
+                                <DataGrid x:Name="WeeklyGoalsGrid" IsReadOnly="True">
+                                    <DataGrid.Columns>
+                                        <DataGridTextColumn Header="영양소" Binding="{Binding Name}" Width="*" />
+                                        <DataGridTextColumn Header="목표" Binding="{Binding Goal}" Width="82" />
+                                        <DataGridTextColumn Header="평균" Binding="{Binding Average}" Width="82" />
+                                        <DataGridTextColumn Header="달성률" Binding="{Binding Rate}" Width="82" />
+                                        <DataGridTextColumn Header="단위" Binding="{Binding Unit}" Width="80" />
+                                    </DataGrid.Columns>
+                                </DataGrid>
+                            </DockPanel>
+                        </Border>
+                    </Grid>
+                </Grid>
+            </TabItem>
+
+            <TabItem Header="영양 목표">
+                <Border Margin="0,10,0,0" Background="White" BorderBrush="#D5DCE5" BorderThickness="1" Padding="12">
+                    <DockPanel>
+                        <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Margin="0,0,0,8">
+                            <TextBlock Text="일일 영양 목표" Style="{StaticResource SectionTitle}" Width="130" />
+                            <Button Content="저장" Click="SaveGoals_Click" />
+                        </StackPanel>
+                        <DataGrid x:Name="GoalsGrid">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="구분" Binding="{Binding Group}" Width="90" IsReadOnly="True" />
+                                <DataGridTextColumn Header="영양소" Binding="{Binding Name}" Width="160" IsReadOnly="True" />
+                                <DataGridTextColumn Header="일일 목표" Binding="{Binding DailyTarget, Converter={StaticResource DecimalNumberConverter}, UpdateSourceTrigger=LostFocus}" Width="130" />
+                                <DataGridTextColumn Header="단위" Binding="{Binding Unit}" Width="120" IsReadOnly="True" />
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </DockPanel>
+                </Border>
+            </TabItem>
+
+        </TabControl>
+    </DockPanel>
+</Window>
