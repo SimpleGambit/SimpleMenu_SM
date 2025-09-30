@@ -1,0 +1,71 @@
+<Window x:Class="NutritionOptimizer.UI.Views.NutritionTemplateManagerWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="영양성분 템플릿 관리"
+        Height="600"
+        Width="900"
+        WindowStartupLocation="CenterOwner">
+    <Window.Resources>
+        <!-- 헤더 중앙 정렬 -->
+        <Style x:Key="CenterHeaderStyle" TargetType="DataGridColumnHeader">
+            <Setter Property="HorizontalContentAlignment" Value="Center" />
+        </Style>
+        <!-- 숫자 우측 정렬 -->
+        <Style x:Key="RightAlignCell" TargetType="TextBlock">
+            <Setter Property="HorizontalAlignment" Value="Right" />
+            <Setter Property="Margin" Value="0,0,8,0" />
+        </Style>
+    </Window.Resources>
+    
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <!-- 제목 -->
+        <TextBlock Grid.Row="0"
+                   Text="영양성분 템플릿 관리 (100g 기준)"
+                   FontSize="18"
+                   FontWeight="Bold"
+                   Margin="0 0 0 16" />
+
+        <!-- 버튼 -->
+        <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0 0 0 12">
+            <Button Content="➕ 추가" Width="80" Height="32" Margin="0 0 8 0" Click="AddButton_Click" />
+            <Button Content="✏️ 수정" Width="80" Height="32" Margin="0 0 8 0" Click="EditButton_Click" />
+            <Button Content="🗑️ 삭제" Width="80" Height="32" Click="DeleteButton_Click" />
+        </StackPanel>
+
+        <!-- 템플릿 목록 -->
+        <DataGrid Grid.Row="2"
+                  x:Name="TemplatesDataGrid"
+                  AutoGenerateColumns="False"
+                  IsReadOnly="True"
+                  SelectionMode="Single"
+                  AlternatingRowBackground="#F9F9F9"
+                  MouseDoubleClick="TemplatesDataGrid_MouseDoubleClick">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="이름" Binding="{Binding Name}" Width="120" HeaderStyle="{StaticResource CenterHeaderStyle}" />
+                <DataGridTextColumn Header="카테고리" Binding="{Binding Category}" Width="100" HeaderStyle="{StaticResource CenterHeaderStyle}" />
+                <DataGridTextColumn Header="칼로리" Binding="{Binding Kcal, StringFormat={}{0:N1}}" Width="70" HeaderStyle="{StaticResource CenterHeaderStyle}" ElementStyle="{StaticResource RightAlignCell}" />
+                <DataGridTextColumn Header="단백질(g)" Binding="{Binding ProteinG, StringFormat={}{0:N1}}" Width="80" HeaderStyle="{StaticResource CenterHeaderStyle}" ElementStyle="{StaticResource RightAlignCell}" />
+                <DataGridTextColumn Header="지방(g)" Binding="{Binding FatG, StringFormat={}{0:N1}}" Width="70" HeaderStyle="{StaticResource CenterHeaderStyle}" ElementStyle="{StaticResource RightAlignCell}" />
+                <DataGridTextColumn Header="탄수화물(g)" Binding="{Binding CarbsG, StringFormat={}{0:N1}}" Width="90" HeaderStyle="{StaticResource CenterHeaderStyle}" ElementStyle="{StaticResource RightAlignCell}" />
+                <DataGridTextColumn Header="식이섬유(g)" Binding="{Binding FiberG, StringFormat={}{0:N1}}" Width="90" HeaderStyle="{StaticResource CenterHeaderStyle}" ElementStyle="{StaticResource RightAlignCell}" />
+                <DataGridTextColumn Header="나트륨(mg)" Binding="{Binding SodiumMg, StringFormat={}{0:N0}}" Width="90" HeaderStyle="{StaticResource CenterHeaderStyle}" ElementStyle="{StaticResource RightAlignCell}" />
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <!-- 닫기 버튼 -->
+        <Button Grid.Row="3"
+                Content="닫기"
+                Width="80"
+                Height="32"
+                HorizontalAlignment="Right"
+                Margin="0 16 0 0"
+                Click="CloseButton_Click" />
+    </Grid>
+</Window>
