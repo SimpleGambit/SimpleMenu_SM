@@ -1,0 +1,395 @@
+<Window x:Class="NutritionOptimizer.UI.Views.FoodDetailWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="음식 상세 정보"
+        Height="750"
+        Width="850"
+        WindowStartupLocation="CenterOwner"
+        ResizeMode="CanResize">
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <!-- 헤더: 음식 이름 -->
+        <StackPanel Grid.Row="0" Margin="0 0 0 16">
+            <TextBlock Text="{Binding Name}" 
+                       FontSize="24" 
+                       FontWeight="Bold" 
+                       TextWrapping="Wrap" />
+            <StackPanel Orientation="Horizontal" Margin="0 8 0 0">
+                <TextBlock Text="구분: " FontWeight="SemiBold" />
+                <TextBlock Text="{Binding Type}" />
+                <TextBlock Text="  |  " Margin="8 0" />
+                <TextBlock Text="분류: " FontWeight="SemiBold" />
+                <TextBlock Text="{Binding Category}" />
+            </StackPanel>
+        </StackPanel>
+
+        <!-- 내용: 스크롤 가능한 영양 정보 -->
+        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+            <StackPanel>
+                <!-- 기본 정보 -->
+                <GroupBox Header="기본 정보" Margin="0 0 0 12" Padding="12">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="200" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+
+                        <TextBlock Grid.Row="0" Grid.Column="0" Text="단위:" FontWeight="SemiBold" Margin="0 0 0 8" />
+                        <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding WeightUnit}" Margin="0 0 0 8" />
+
+                        <TextBlock Grid.Row="1" Grid.Column="0" Text="총 가격:" FontWeight="SemiBold" Margin="0 0 0 8" />
+                        <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding TotalPrice, StringFormat={}{0:N0}원}" Margin="0 0 0 8" />
+
+                        <TextBlock Grid.Row="2" Grid.Column="0" Text="단위당 가격:" FontWeight="SemiBold" Margin="0 0 0 8" />
+                        <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding UnitPriceDisplay}" Margin="0 0 0 8" />
+
+                        <TextBlock Grid.Row="3" Grid.Column="0" Text="메모:" FontWeight="SemiBold" VerticalAlignment="Top" />
+                        <TextBlock Grid.Row="3" Grid.Column="1" Text="{Binding Notes}" TextWrapping="Wrap" />
+                    </Grid>
+                </GroupBox>
+
+                <!-- 주요 영양소 -->
+                <GroupBox Header="주요 영양소" Margin="0 0 0 12" Padding="12">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="120" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="80" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="100" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+
+                        <!-- 헤더 -->
+                        <TextBlock Grid.Row="0" Grid.Column="0" Text="" FontWeight="Bold" Margin="0 0 0 8" />
+                        <TextBlock Grid.Row="0" Grid.Column="1" Text="총량" FontWeight="Bold" HorizontalAlignment="Center" Margin="0 0 0 8" />
+                        <TextBlock Grid.Row="0" Grid.Column="2" Text="하루 섭취량 %" FontWeight="Bold" HorizontalAlignment="Center" Margin="0 0 0 8" />
+                        <TextBlock Grid.Row="0" Grid.Column="3" Text="100g 기준" FontWeight="Bold" HorizontalAlignment="Center" Margin="0 0 0 8" />
+                        <TextBlock Grid.Row="0" Grid.Column="4" Text="100g 기준&#x0a;하루 섭취량 %" FontWeight="Bold" HorizontalAlignment="Center" TextWrapping="Wrap" Margin="0 0 0 8" />
+
+                        <!-- 칼로리 -->
+                        <TextBlock Grid.Row="1" Grid.Column="0" Text="칼로리" FontWeight="SemiBold" Margin="0 0 0 8" />
+                        <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding TotalKcal, StringFormat={}{0:N0} kcal}" HorizontalAlignment="Center" Margin="0 0 0 8" />
+                        <TextBlock Grid.Row="1" Grid.Column="2" Text="{Binding PercentKcal}" HorizontalAlignment="Center" Foreground="#0066CC" FontWeight="SemiBold" Margin="0 0 0 8" />
+                        <TextBlock Grid.Row="1" Grid.Column="3" Text="{Binding Per100gKcal, StringFormat={}{0:N0} kcal}" HorizontalAlignment="Center" Foreground="#666666" Margin="0 0 0 8" />
+                        <TextBlock Grid.Row="1" Grid.Column="4" Text="{Binding Per100gPercentKcal}" HorizontalAlignment="Center" Foreground="#999999" Margin="0 0 0 8" />
+
+                        <!-- 수분 -->
+                        <TextBlock Grid.Row="2" Grid.Column="0" Text="수분" FontWeight="SemiBold" Margin="0 0 0 8" />
+                        <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding TotalMoistureG, StringFormat={}{0:N1} g}" HorizontalAlignment="Center" Margin="0 0 0 8" />
+                        <TextBlock Grid.Row="2" Grid.Column="2" Text="{Binding PercentMoistureG}" HorizontalAlignment="Center" Foreground="#0066CC" FontWeight="SemiBold" Margin="0 0 0 8" />
+                        <TextBlock Grid.Row="2" Grid.Column="3" Text="{Binding Per100gMoistureG, StringFormat={}{0:N1} g}" HorizontalAlignment="Center" Foreground="#666666" Margin="0 0 0 8" />
+                        <TextBlock Grid.Row="2" Grid.Column="4" Text="{Binding Per100gPercentMoistureG}" HorizontalAlignment="Center" Foreground="#999999" Margin="0 0 0 8" />
+
+                        <!-- 탄수화물 -->
+                        <TextBlock Grid.Row="3" Grid.Column="0" Text="탄수화물" FontWeight="SemiBold" Margin="0 0 0 8" />
+                        <TextBlock Grid.Row="3" Grid.Column="1" Text="{Binding TotalCarbsG, StringFormat={}{0:N1} g}" HorizontalAlignment="Center" Margin="0 0 0 8" />
+                        <TextBlock Grid.Row="3" Grid.Column="2" Text="{Binding PercentCarbsG}" HorizontalAlignment="Center" Foreground="#0066CC" FontWeight="SemiBold" Margin="0 0 0 8" />
+                        <TextBlock Grid.Row="3" Grid.Column="3" Text="{Binding Per100gCarbsG, StringFormat={}{0:N1} g}" HorizontalAlignment="Center" Foreground="#666666" Margin="0 0 0 8" />
+                        <TextBlock Grid.Row="3" Grid.Column="4" Text="{Binding Per100gPercentCarbsG}" HorizontalAlignment="Center" Foreground="#999999" Margin="0 0 0 8" />
+
+                        <!-- 단백질 -->
+                        <TextBlock Grid.Row="4" Grid.Column="0" Text="단백질" FontWeight="SemiBold" Margin="0 0 0 8" />
+                        <TextBlock Grid.Row="4" Grid.Column="1" Text="{Binding TotalProteinG, StringFormat={}{0:N1} g}" HorizontalAlignment="Center" Margin="0 0 0 8" />
+                        <TextBlock Grid.Row="4" Grid.Column="2" Text="{Binding PercentProteinG}" HorizontalAlignment="Center" Foreground="#0066CC" FontWeight="SemiBold" Margin="0 0 0 8" />
+                        <TextBlock Grid.Row="4" Grid.Column="3" Text="{Binding Per100gProteinG, StringFormat={}{0:N1} g}" HorizontalAlignment="Center" Foreground="#666666" Margin="0 0 0 8" />
+                        <TextBlock Grid.Row="4" Grid.Column="4" Text="{Binding Per100gPercentProteinG}" HorizontalAlignment="Center" Foreground="#999999" Margin="0 0 0 8" />
+
+                        <!-- 지방 -->
+                        <TextBlock Grid.Row="5" Grid.Column="0" Text="지방" FontWeight="SemiBold" Margin="0 0 0 8" />
+                        <TextBlock Grid.Row="5" Grid.Column="1" Text="{Binding TotalFatG, StringFormat={}{0:N1} g}" HorizontalAlignment="Center" Margin="0 0 0 8" />
+                        <TextBlock Grid.Row="5" Grid.Column="2" Text="{Binding PercentFatG}" HorizontalAlignment="Center" Foreground="#0066CC" FontWeight="SemiBold" Margin="0 0 0 8" />
+                        <TextBlock Grid.Row="5" Grid.Column="3" Text="{Binding Per100gFatG, StringFormat={}{0:N1} g}" HorizontalAlignment="Center" Foreground="#666666" Margin="0 0 0 8" />
+                        <TextBlock Grid.Row="5" Grid.Column="4" Text="{Binding Per100gPercentFatG}" HorizontalAlignment="Center" Foreground="#999999" Margin="0 0 0 8" />
+
+                        <!-- 포화지방 -->
+                        <TextBlock Grid.Row="6" Grid.Column="0" Text="  - 포화지방" FontWeight="SemiBold" Margin="0 0 0 8" />
+                        <TextBlock Grid.Row="6" Grid.Column="1" Text="{Binding TotalSaturatedFatG, StringFormat={}{0:N1} g}" HorizontalAlignment="Center" Margin="0 0 0 8" />
+                        <TextBlock Grid.Row="6" Grid.Column="2" Text="{Binding PercentSaturatedFatG}" HorizontalAlignment="Center" Foreground="#0066CC" FontWeight="SemiBold" Margin="0 0 0 8" />
+                        <TextBlock Grid.Row="6" Grid.Column="3" Text="{Binding Per100gSaturatedFatG, StringFormat={}{0:N1} g}" HorizontalAlignment="Center" Foreground="#666666" Margin="0 0 0 8" />
+                        <TextBlock Grid.Row="6" Grid.Column="4" Text="{Binding Per100gPercentSaturatedFatG}" HorizontalAlignment="Center" Foreground="#999999" Margin="0 0 0 8" />
+
+                        <!-- 트랜스지방 -->
+                        <TextBlock Grid.Row="7" Grid.Column="0" Text="  - 트랜스지방" FontWeight="SemiBold" Margin="0 0 0 8" />
+                        <TextBlock Grid.Row="7" Grid.Column="1" Text="{Binding TotalTransFatG, StringFormat={}{0:N1} g}" HorizontalAlignment="Center" Margin="0 0 0 8" />
+                        <TextBlock Grid.Row="7" Grid.Column="2" Text="{Binding PercentTransFatG}" HorizontalAlignment="Center" Foreground="#0066CC" FontWeight="SemiBold" Margin="0 0 0 8" />
+                        <TextBlock Grid.Row="7" Grid.Column="3" Text="{Binding Per100gTransFatG, StringFormat={}{0:N1} g}" HorizontalAlignment="Center" Foreground="#666666" Margin="0 0 0 8" />
+                        <TextBlock Grid.Row="7" Grid.Column="4" Text="{Binding Per100gPercentTransFatG}" HorizontalAlignment="Center" Foreground="#999999" Margin="0 0 0 8" />
+
+                        <!-- 식이섬유 -->
+                        <TextBlock Grid.Row="8" Grid.Column="0" Text="식이섬유" FontWeight="SemiBold" Margin="0 0 0 8" />
+                        <TextBlock Grid.Row="8" Grid.Column="1" Text="{Binding TotalFiberG, StringFormat={}{0:N1} g}" HorizontalAlignment="Center" Margin="0 0 0 8" />
+                        <TextBlock Grid.Row="8" Grid.Column="2" Text="{Binding PercentFiberG}" HorizontalAlignment="Center" Foreground="#0066CC" FontWeight="SemiBold" Margin="0 0 0 8" />
+                        <TextBlock Grid.Row="8" Grid.Column="3" Text="{Binding Per100gFiberG, StringFormat={}{0:N1} g}" HorizontalAlignment="Center" Foreground="#666666" Margin="0 0 0 8" />
+                        <TextBlock Grid.Row="8" Grid.Column="4" Text="{Binding Per100gPercentFiberG}" HorizontalAlignment="Center" Foreground="#999999" Margin="0 0 0 8" />
+
+                        <!-- 당류 -->
+                        <TextBlock Grid.Row="9" Grid.Column="0" Text="당류" FontWeight="SemiBold" Margin="0 0 0 8" />
+                        <TextBlock Grid.Row="9" Grid.Column="1" Text="{Binding TotalSugarG, StringFormat={}{0:N1} g}" HorizontalAlignment="Center" Margin="0 0 0 8" />
+                        <TextBlock Grid.Row="9" Grid.Column="2" Text="{Binding PercentSugarG}" HorizontalAlignment="Center" Foreground="#0066CC" FontWeight="SemiBold" Margin="0 0 0 8" />
+                        <TextBlock Grid.Row="9" Grid.Column="3" Text="{Binding Per100gSugarG, StringFormat={}{0:N1} g}" HorizontalAlignment="Center" Foreground="#666666" Margin="0 0 0 8" />
+                        <TextBlock Grid.Row="9" Grid.Column="4" Text="{Binding Per100gPercentSugarG}" HorizontalAlignment="Center" Foreground="#999999" Margin="0 0 0 8" />
+
+                        <!-- 콜레스테롤 -->
+                        <TextBlock Grid.Row="10" Grid.Column="0" Text="콜레스테롤" FontWeight="SemiBold" />
+                        <TextBlock Grid.Row="10" Grid.Column="1" Text="{Binding TotalCholesterolMg, StringFormat={}{0:N0} mg}" HorizontalAlignment="Center" />
+                        <TextBlock Grid.Row="10" Grid.Column="2" Text="{Binding PercentCholesterolMg}" HorizontalAlignment="Center" Foreground="#0066CC" FontWeight="SemiBold" />
+                        <TextBlock Grid.Row="10" Grid.Column="3" Text="{Binding Per100gCholesterolMg, StringFormat={}{0:N0} mg}" HorizontalAlignment="Center" Foreground="#666666" />
+                        <TextBlock Grid.Row="10" Grid.Column="4" Text="{Binding Per100gPercentCholesterolMg}" HorizontalAlignment="Center" Foreground="#999999" />
+                    </Grid>
+                </GroupBox>
+
+                <!-- 무기질 -->
+                <GroupBox Header="무기질" Margin="0 0 0 12" Padding="12">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="120" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="80" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="100" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+
+                        <!-- 헤더 -->
+                        <TextBlock Grid.Row="0" Grid.Column="1" Text="총량" FontWeight="Bold" HorizontalAlignment="Center" Margin="0 0 0 8" />
+                        <TextBlock Grid.Row="0" Grid.Column="2" Text="하루 섭취량 %" FontWeight="Bold" HorizontalAlignment="Center" Margin="0 0 0 8" />
+                        <TextBlock Grid.Row="0" Grid.Column="3" Text="100g 기준" FontWeight="Bold" HorizontalAlignment="Center" Margin="0 0 0 8" />
+                        <TextBlock Grid.Row="0" Grid.Column="4" Text="100g 기준&#x0a;하루 섭취량 %" FontWeight="Bold" HorizontalAlignment="Center" TextWrapping="Wrap" Margin="0 0 0 8" />
+
+                        <TextBlock Grid.Row="1" Grid.Column="0" Text="나트륨" FontWeight="SemiBold" Margin="0 0 0 8" />
+                        <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding TotalSodiumMg, StringFormat={}{0:N0} mg}" HorizontalAlignment="Center" Margin="0 0 0 8" />
+                        <TextBlock Grid.Row="1" Grid.Column="2" Text="{Binding PercentSodiumMg}" HorizontalAlignment="Center" Foreground="#0066CC" FontWeight="SemiBold" Margin="0 0 0 8" />
+                        <TextBlock Grid.Row="1" Grid.Column="3" Text="{Binding Per100gSodiumMg, StringFormat={}{0:N0} mg}" HorizontalAlignment="Center" Foreground="#666666" Margin="0 0 0 8" />
+                        <TextBlock Grid.Row="1" Grid.Column="4" Text="{Binding Per100gPercentSodiumMg}" HorizontalAlignment="Center" Foreground="#999999" Margin="0 0 0 8" />
+
+                        <TextBlock Grid.Row="2" Grid.Column="0" Text="칼슘" FontWeight="SemiBold" Margin="0 0 0 8" />
+                        <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding TotalCalciumMg, StringFormat={}{0:N1} mg}" HorizontalAlignment="Center" Margin="0 0 0 8" />
+                        <TextBlock Grid.Row="2" Grid.Column="2" Text="{Binding PercentCalciumMg}" HorizontalAlignment="Center" Foreground="#0066CC" FontWeight="SemiBold" Margin="0 0 0 8" />
+                        <TextBlock Grid.Row="2" Grid.Column="3" Text="{Binding Per100gCalciumMg, StringFormat={}{0:N1} mg}" HorizontalAlignment="Center" Foreground="#666666" Margin="0 0 0 8" />
+                        <TextBlock Grid.Row="2" Grid.Column="4" Text="{Binding Per100gPercentCalciumMg}" HorizontalAlignment="Center" Foreground="#999999" Margin="0 0 0 8" />
+
+                        <TextBlock Grid.Row="3" Grid.Column="0" Text="철분" FontWeight="SemiBold" Margin="0 0 0 8" />
+                        <TextBlock Grid.Row="3" Grid.Column="1" Text="{Binding TotalIronMg, StringFormat={}{0:N1} mg}" HorizontalAlignment="Center" Margin="0 0 0 8" />
+                        <TextBlock Grid.Row="3" Grid.Column="2" Text="{Binding PercentIronMg}" HorizontalAlignment="Center" Foreground="#0066CC" FontWeight="SemiBold" Margin="0 0 0 8" />
+                        <TextBlock Grid.Row="3" Grid.Column="3" Text="{Binding Per100gIronMg, StringFormat={}{0:N1} mg}" HorizontalAlignment="Center" Foreground="#666666" Margin="0 0 0 8" />
+                        <TextBlock Grid.Row="3" Grid.Column="4" Text="{Binding Per100gPercentIronMg}" HorizontalAlignment="Center" Foreground="#999999" Margin="0 0 0 8" />
+
+                        <TextBlock Grid.Row="4" Grid.Column="0" Text="마그네슘" FontWeight="SemiBold" Margin="0 0 0 8" />
+                        <TextBlock Grid.Row="4" Grid.Column="1" Text="{Binding TotalMagnesiumMg, StringFormat={}{0:N1} mg}" HorizontalAlignment="Center" Margin="0 0 0 8" />
+                        <TextBlock Grid.Row="4" Grid.Column="2" Text="{Binding PercentMagnesiumMg}" HorizontalAlignment="Center" Foreground="#0066CC" FontWeight="SemiBold" Margin="0 0 0 8" />
+                        <TextBlock Grid.Row="4" Grid.Column="3" Text="{Binding Per100gMagnesiumMg, StringFormat={}{0:N1} mg}" HorizontalAlignment="Center" Foreground="#666666" Margin="0 0 0 8" />
+                        <TextBlock Grid.Row="4" Grid.Column="4" Text="{Binding Per100gPercentMagnesiumMg}" HorizontalAlignment="Center" Foreground="#999999" Margin="0 0 0 8" />
+
+                        <TextBlock Grid.Row="5" Grid.Column="0" Text="인" FontWeight="SemiBold" Margin="0 0 0 8" />
+                        <TextBlock Grid.Row="5" Grid.Column="1" Text="{Binding TotalPhosphorusMg, StringFormat={}{0:N1} mg}" HorizontalAlignment="Center" Margin="0 0 0 8" />
+                        <TextBlock Grid.Row="5" Grid.Column="2" Text="{Binding PercentPhosphorusMg}" HorizontalAlignment="Center" Foreground="#0066CC" FontWeight="SemiBold" Margin="0 0 0 8" />
+                        <TextBlock Grid.Row="5" Grid.Column="3" Text="{Binding Per100gPhosphorusMg, StringFormat={}{0:N1} mg}" HorizontalAlignment="Center" Foreground="#666666" Margin="0 0 0 8" />
+                        <TextBlock Grid.Row="5" Grid.Column="4" Text="{Binding Per100gPercentPhosphorusMg}" HorizontalAlignment="Center" Foreground="#999999" Margin="0 0 0 8" />
+
+                        <TextBlock Grid.Row="6" Grid.Column="0" Text="칼륨" FontWeight="SemiBold" Margin="0 0 0 8" />
+                        <TextBlock Grid.Row="6" Grid.Column="1" Text="{Binding TotalPotassiumMg, StringFormat={}{0:N1} mg}" HorizontalAlignment="Center" Margin="0 0 0 8" />
+                        <TextBlock Grid.Row="6" Grid.Column="2" Text="{Binding PercentPotassiumMg}" HorizontalAlignment="Center" Foreground="#0066CC" FontWeight="SemiBold" Margin="0 0 0 8" />
+                        <TextBlock Grid.Row="6" Grid.Column="3" Text="{Binding Per100gPotassiumMg, StringFormat={}{0:N1} mg}" HorizontalAlignment="Center" Foreground="#666666" Margin="0 0 0 8" />
+                        <TextBlock Grid.Row="6" Grid.Column="4" Text="{Binding Per100gPercentPotassiumMg}" HorizontalAlignment="Center" Foreground="#999999" Margin="0 0 0 8" />
+
+                        <TextBlock Grid.Row="7" Grid.Column="0" Text="아연" FontWeight="SemiBold" Margin="0 0 0 8" />
+                        <TextBlock Grid.Row="7" Grid.Column="1" Text="{Binding TotalZincMg, StringFormat={}{0:N1} mg}" HorizontalAlignment="Center" Margin="0 0 0 8" />
+                        <TextBlock Grid.Row="7" Grid.Column="2" Text="{Binding PercentZincMg}" HorizontalAlignment="Center" Foreground="#0066CC" FontWeight="SemiBold" Margin="0 0 0 8" />
+                        <TextBlock Grid.Row="7" Grid.Column="3" Text="{Binding Per100gZincMg, StringFormat={}{0:N1} mg}" HorizontalAlignment="Center" Foreground="#666666" Margin="0 0 0 8" />
+                        <TextBlock Grid.Row="7" Grid.Column="4" Text="{Binding Per100gPercentZincMg}" HorizontalAlignment="Center" Foreground="#999999" Margin="0 0 0 8" />
+
+                        <TextBlock Grid.Row="8" Grid.Column="0" Text="구리" FontWeight="SemiBold" Margin="0 0 0 8" />
+                        <TextBlock Grid.Row="8" Grid.Column="1" Text="{Binding TotalCopperMg, StringFormat={}{0:N2} mg}" HorizontalAlignment="Center" Margin="0 0 0 8" />
+                        <TextBlock Grid.Row="8" Grid.Column="2" Text="{Binding PercentCopperMg}" HorizontalAlignment="Center" Foreground="#0066CC" FontWeight="SemiBold" Margin="0 0 0 8" />
+                        <TextBlock Grid.Row="8" Grid.Column="3" Text="{Binding Per100gCopperMg, StringFormat={}{0:N2} mg}" HorizontalAlignment="Center" Foreground="#666666" Margin="0 0 0 8" />
+                        <TextBlock Grid.Row="8" Grid.Column="4" Text="{Binding Per100gPercentCopperMg}" HorizontalAlignment="Center" Foreground="#999999" Margin="0 0 0 8" />
+
+                        <TextBlock Grid.Row="9" Grid.Column="0" Text="망간" FontWeight="SemiBold" Margin="0 0 0 8" />
+                        <TextBlock Grid.Row="9" Grid.Column="1" Text="{Binding TotalManganeseMg, StringFormat={}{0:N2} mg}" HorizontalAlignment="Center" Margin="0 0 0 8" />
+                        <TextBlock Grid.Row="9" Grid.Column="2" Text="{Binding PercentManganeseMg}" HorizontalAlignment="Center" Foreground="#0066CC" FontWeight="SemiBold" Margin="0 0 0 8" />
+                        <TextBlock Grid.Row="9" Grid.Column="3" Text="{Binding Per100gManganeseMg, StringFormat={}{0:N2} mg}" HorizontalAlignment="Center" Foreground="#666666" Margin="0 0 0 8" />
+                        <TextBlock Grid.Row="9" Grid.Column="4" Text="{Binding Per100gPercentManganeseMg}" HorizontalAlignment="Center" Foreground="#999999" Margin="0 0 0 8" />
+
+                        <TextBlock Grid.Row="10" Grid.Column="0" Text="셀레늄" FontWeight="SemiBold" Margin="0 0 0 8" />
+                        <TextBlock Grid.Row="10" Grid.Column="1" Text="{Binding TotalSeleniumUg, StringFormat={}{0:N1} μg}" HorizontalAlignment="Center" Margin="0 0 0 8" />
+                        <TextBlock Grid.Row="10" Grid.Column="2" Text="{Binding PercentSeleniumUg}" HorizontalAlignment="Center" Foreground="#0066CC" FontWeight="SemiBold" Margin="0 0 0 8" />
+                        <TextBlock Grid.Row="10" Grid.Column="3" Text="{Binding Per100gSeleniumUg, StringFormat={}{0:N1} μg}" HorizontalAlignment="Center" Foreground="#666666" Margin="0 0 0 8" />
+                        <TextBlock Grid.Row="10" Grid.Column="4" Text="{Binding Per100gPercentSeleniumUg}" HorizontalAlignment="Center" Foreground="#999999" Margin="0 0 0 8" />
+
+                        <TextBlock Grid.Row="11" Grid.Column="0" Text="몰리브덴" FontWeight="SemiBold" Margin="0 0 0 8" />
+                        <TextBlock Grid.Row="11" Grid.Column="1" Text="{Binding TotalMolybdenumUg, StringFormat={}{0:N1} μg}" HorizontalAlignment="Center" Margin="0 0 0 8" />
+                        <TextBlock Grid.Row="11" Grid.Column="2" Text="{Binding PercentMolybdenumUg}" HorizontalAlignment="Center" Foreground="#0066CC" FontWeight="SemiBold" Margin="0 0 0 8" />
+                        <TextBlock Grid.Row="11" Grid.Column="3" Text="{Binding Per100gMolybdenumUg, StringFormat={}{0:N1} μg}" HorizontalAlignment="Center" Foreground="#666666" Margin="0 0 0 8" />
+                        <TextBlock Grid.Row="11" Grid.Column="4" Text="{Binding Per100gPercentMolybdenumUg}" HorizontalAlignment="Center" Foreground="#999999" Margin="0 0 0 8" />
+
+                        <TextBlock Grid.Row="12" Grid.Column="0" Text="요오드" FontWeight="SemiBold" />
+                        <TextBlock Grid.Row="12" Grid.Column="1" Text="{Binding TotalIodineUg, StringFormat={}{0:N1} μg}" HorizontalAlignment="Center" />
+                        <TextBlock Grid.Row="12" Grid.Column="2" Text="{Binding PercentIodineUg}" HorizontalAlignment="Center" Foreground="#0066CC" FontWeight="SemiBold" />
+                        <TextBlock Grid.Row="12" Grid.Column="3" Text="{Binding Per100gIodineUg, StringFormat={}{0:N1} μg}" HorizontalAlignment="Center" Foreground="#666666" />
+                        <TextBlock Grid.Row="12" Grid.Column="4" Text="{Binding Per100gPercentIodineUg}" HorizontalAlignment="Center" Foreground="#999999" />
+                    </Grid>
+                </GroupBox>
+
+                <!-- 비타민 -->
+                <GroupBox Header="비타민" Padding="12">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="140" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="80" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="100" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+
+                        <!-- 헤더 -->
+                        <TextBlock Grid.Row="0" Grid.Column="1" Text="총량" FontWeight="Bold" HorizontalAlignment="Center" Margin="0 0 0 8" />
+                        <TextBlock Grid.Row="0" Grid.Column="2" Text="하루 섭취량 %" FontWeight="Bold" HorizontalAlignment="Center" Margin="0 0 0 8" />
+                        <TextBlock Grid.Row="0" Grid.Column="3" Text="100g 기준" FontWeight="Bold" HorizontalAlignment="Center" Margin="0 0 0 8" />
+                        <TextBlock Grid.Row="0" Grid.Column="4" Text="100g 기준&#x0a;하루 섭취량 %" FontWeight="Bold" HorizontalAlignment="Center" TextWrapping="Wrap" Margin="0 0 0 8" />
+
+                        <TextBlock Grid.Row="1" Grid.Column="0" Text="비타민 A" FontWeight="SemiBold" Margin="0 0 0 8" />
+                        <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding TotalVitaminAUg, StringFormat={}{0:N1} μg}" HorizontalAlignment="Center" Margin="0 0 0 8" />
+                        <TextBlock Grid.Row="1" Grid.Column="2" Text="{Binding PercentVitaminAUg}" HorizontalAlignment="Center" Foreground="#0066CC" FontWeight="SemiBold" Margin="0 0 0 8" />
+                        <TextBlock Grid.Row="1" Grid.Column="3" Text="{Binding Per100gVitaminAUg, StringFormat={}{0:N1} μg}" HorizontalAlignment="Center" Foreground="#666666" Margin="0 0 0 8" />
+                        <TextBlock Grid.Row="1" Grid.Column="4" Text="{Binding Per100gPercentVitaminAUg}" HorizontalAlignment="Center" Foreground="#999999" Margin="0 0 0 8" />
+
+                        <TextBlock Grid.Row="2" Grid.Column="0" Text="비타민 C" FontWeight="SemiBold" Margin="0 0 0 8" />
+                        <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding TotalVitaminCMg, StringFormat={}{0:N1} mg}" HorizontalAlignment="Center" Margin="0 0 0 8" />
+                        <TextBlock Grid.Row="2" Grid.Column="2" Text="{Binding PercentVitaminCMg}" HorizontalAlignment="Center" Foreground="#0066CC" FontWeight="SemiBold" Margin="0 0 0 8" />
+                        <TextBlock Grid.Row="2" Grid.Column="3" Text="{Binding Per100gVitaminCMg, StringFormat={}{0:N1} mg}" HorizontalAlignment="Center" Foreground="#666666" Margin="0 0 0 8" />
+                        <TextBlock Grid.Row="2" Grid.Column="4" Text="{Binding Per100gPercentVitaminCMg}" HorizontalAlignment="Center" Foreground="#999999" Margin="0 0 0 8" />
+
+                        <TextBlock Grid.Row="3" Grid.Column="0" Text="비타민 D" FontWeight="SemiBold" Margin="0 0 0 8" />
+                        <TextBlock Grid.Row="3" Grid.Column="1" Text="{Binding TotalVitaminDUg, StringFormat={}{0:N1} μg}" HorizontalAlignment="Center" Margin="0 0 0 8" />
+                        <TextBlock Grid.Row="3" Grid.Column="2" Text="{Binding PercentVitaminDUg}" HorizontalAlignment="Center" Foreground="#0066CC" FontWeight="SemiBold" Margin="0 0 0 8" />
+                        <TextBlock Grid.Row="3" Grid.Column="3" Text="{Binding Per100gVitaminDUg, StringFormat={}{0:N1} μg}" HorizontalAlignment="Center" Foreground="#666666" Margin="0 0 0 8" />
+                        <TextBlock Grid.Row="3" Grid.Column="4" Text="{Binding Per100gPercentVitaminDUg}" HorizontalAlignment="Center" Foreground="#999999" Margin="0 0 0 8" />
+
+                        <TextBlock Grid.Row="4" Grid.Column="0" Text="비타민 E" FontWeight="SemiBold" Margin="0 0 0 8" />
+                        <TextBlock Grid.Row="4" Grid.Column="1" Text="{Binding TotalVitaminEMg, StringFormat={}{0:N1} mg}" HorizontalAlignment="Center" Margin="0 0 0 8" />
+                        <TextBlock Grid.Row="4" Grid.Column="2" Text="{Binding PercentVitaminEMg}" HorizontalAlignment="Center" Foreground="#0066CC" FontWeight="SemiBold" Margin="0 0 0 8" />
+                        <TextBlock Grid.Row="4" Grid.Column="3" Text="{Binding Per100gVitaminEMg, StringFormat={}{0:N1} mg}" HorizontalAlignment="Center" Foreground="#666666" Margin="0 0 0 8" />
+                        <TextBlock Grid.Row="4" Grid.Column="4" Text="{Binding Per100gPercentVitaminEMg}" HorizontalAlignment="Center" Foreground="#999999" Margin="0 0 0 8" />
+
+                        <TextBlock Grid.Row="5" Grid.Column="0" Text="비타민 K" FontWeight="SemiBold" Margin="0 0 0 8" />
+                        <TextBlock Grid.Row="5" Grid.Column="1" Text="{Binding TotalVitaminKUg, StringFormat={}{0:N1} μg}" HorizontalAlignment="Center" Margin="0 0 0 8" />
+                        <TextBlock Grid.Row="5" Grid.Column="2" Text="{Binding PercentVitaminKUg}" HorizontalAlignment="Center" Foreground="#0066CC" FontWeight="SemiBold" Margin="0 0 0 8" />
+                        <TextBlock Grid.Row="5" Grid.Column="3" Text="{Binding Per100gVitaminKUg, StringFormat={}{0:N1} μg}" HorizontalAlignment="Center" Foreground="#666666" Margin="0 0 0 8" />
+                        <TextBlock Grid.Row="5" Grid.Column="4" Text="{Binding Per100gPercentVitaminKUg}" HorizontalAlignment="Center" Foreground="#999999" Margin="0 0 0 8" />
+
+                        <TextBlock Grid.Row="6" Grid.Column="0" Text="비타민 B1/티아민" FontWeight="SemiBold" Margin="0 0 0 8" />
+                        <TextBlock Grid.Row="6" Grid.Column="1" Text="{Binding TotalVitaminB1Mg, StringFormat={}{0:N2} mg}" HorizontalAlignment="Center" Margin="0 0 0 8" />
+                        <TextBlock Grid.Row="6" Grid.Column="2" Text="{Binding PercentVitaminB1Mg}" HorizontalAlignment="Center" Foreground="#0066CC" FontWeight="SemiBold" Margin="0 0 0 8" />
+                        <TextBlock Grid.Row="6" Grid.Column="3" Text="{Binding Per100gVitaminB1Mg, StringFormat={}{0:N2} mg}" HorizontalAlignment="Center" Foreground="#666666" Margin="0 0 0 8" />
+                        <TextBlock Grid.Row="6" Grid.Column="4" Text="{Binding Per100gPercentVitaminB1Mg}" HorizontalAlignment="Center" Foreground="#999999" Margin="0 0 0 8" />
+
+                        <TextBlock Grid.Row="7" Grid.Column="0" Text="비타민 B2/리보플라빈" FontWeight="SemiBold" Margin="0 0 0 8" />
+                        <TextBlock Grid.Row="7" Grid.Column="1" Text="{Binding TotalVitaminB2Mg, StringFormat={}{0:N2} mg}" HorizontalAlignment="Center" Margin="0 0 0 8" />
+                        <TextBlock Grid.Row="7" Grid.Column="2" Text="{Binding PercentVitaminB2Mg}" HorizontalAlignment="Center" Foreground="#0066CC" FontWeight="SemiBold" Margin="0 0 0 8" />
+                        <TextBlock Grid.Row="7" Grid.Column="3" Text="{Binding Per100gVitaminB2Mg, StringFormat={}{0:N2} mg}" HorizontalAlignment="Center" Foreground="#666666" Margin="0 0 0 8" />
+                        <TextBlock Grid.Row="7" Grid.Column="4" Text="{Binding Per100gPercentVitaminB2Mg}" HorizontalAlignment="Center" Foreground="#999999" Margin="0 0 0 8" />
+
+                        <TextBlock Grid.Row="8" Grid.Column="0" Text="비타민 B3/니아신" FontWeight="SemiBold" Margin="0 0 0 8" />
+                        <TextBlock Grid.Row="8" Grid.Column="1" Text="{Binding TotalVitaminB3Mg, StringFormat={}{0:N1} mg}" HorizontalAlignment="Center" Margin="0 0 0 8" />
+                        <TextBlock Grid.Row="8" Grid.Column="2" Text="{Binding PercentVitaminB3Mg}" HorizontalAlignment="Center" Foreground="#0066CC" FontWeight="SemiBold" Margin="0 0 0 8" />
+                        <TextBlock Grid.Row="8" Grid.Column="3" Text="{Binding Per100gVitaminB3Mg, StringFormat={}{0:N1} mg}" HorizontalAlignment="Center" Foreground="#666666" Margin="0 0 0 8" />
+                        <TextBlock Grid.Row="8" Grid.Column="4" Text="{Binding Per100gPercentVitaminB3Mg}" HorizontalAlignment="Center" Foreground="#999999" Margin="0 0 0 8" />
+
+                        <TextBlock Grid.Row="9" Grid.Column="0" Text="비타민 B5/판토텐산" FontWeight="SemiBold" Margin="0 0 0 8" />
+                        <TextBlock Grid.Row="9" Grid.Column="1" Text="{Binding TotalVitaminB5Mg, StringFormat={}{0:N2} mg}" HorizontalAlignment="Center" Margin="0 0 0 8" />
+                        <TextBlock Grid.Row="9" Grid.Column="2" Text="{Binding PercentVitaminB5Mg}" HorizontalAlignment="Center" Foreground="#0066CC" FontWeight="SemiBold" Margin="0 0 0 8" />
+                        <TextBlock Grid.Row="9" Grid.Column="3" Text="{Binding Per100gVitaminB5Mg, StringFormat={}{0:N2} mg}" HorizontalAlignment="Center" Foreground="#666666" Margin="0 0 0 8" />
+                        <TextBlock Grid.Row="9" Grid.Column="4" Text="{Binding Per100gPercentVitaminB5Mg}" HorizontalAlignment="Center" Foreground="#999999" Margin="0 0 0 8" />
+
+                        <TextBlock Grid.Row="10" Grid.Column="0" Text="비타민 B6/피리독신" FontWeight="SemiBold" Margin="0 0 0 8" />
+                        <TextBlock Grid.Row="10" Grid.Column="1" Text="{Binding TotalVitaminB6Mg, StringFormat={}{0:N2} mg}" HorizontalAlignment="Center" Margin="0 0 0 8" />
+                        <TextBlock Grid.Row="10" Grid.Column="2" Text="{Binding PercentVitaminB6Mg}" HorizontalAlignment="Center" Foreground="#0066CC" FontWeight="SemiBold" Margin="0 0 0 8" />
+                        <TextBlock Grid.Row="10" Grid.Column="3" Text="{Binding Per100gVitaminB6Mg, StringFormat={}{0:N2} mg}" HorizontalAlignment="Center" Foreground="#666666" Margin="0 0 0 8" />
+                        <TextBlock Grid.Row="10" Grid.Column="4" Text="{Binding Per100gPercentVitaminB6Mg}" HorizontalAlignment="Center" Foreground="#999999" Margin="0 0 0 8" />
+
+                        <TextBlock Grid.Row="11" Grid.Column="0" Text="비타민 B7/비오틴" FontWeight="SemiBold" Margin="0 0 0 8" />
+                        <TextBlock Grid.Row="11" Grid.Column="1" Text="{Binding TotalVitaminB7Ug, StringFormat={}{0:N1} μg}" HorizontalAlignment="Center" Margin="0 0 0 8" />
+                        <TextBlock Grid.Row="11" Grid.Column="2" Text="{Binding PercentVitaminB7Ug}" HorizontalAlignment="Center" Foreground="#0066CC" FontWeight="SemiBold" Margin="0 0 0 8" />
+                        <TextBlock Grid.Row="11" Grid.Column="3" Text="{Binding Per100gVitaminB7Ug, StringFormat={}{0:N1} μg}" HorizontalAlignment="Center" Foreground="#666666" Margin="0 0 0 8" />
+                        <TextBlock Grid.Row="11" Grid.Column="4" Text="{Binding Per100gPercentVitaminB7Ug}" HorizontalAlignment="Center" Foreground="#999999" Margin="0 0 0 8" />
+
+                        <TextBlock Grid.Row="12" Grid.Column="0" Text="비타민 B9/엽산" FontWeight="SemiBold" Margin="0 0 0 8" />
+                        <TextBlock Grid.Row="12" Grid.Column="1" Text="{Binding TotalVitaminB9Ug, StringFormat={}{0:N1} μg}" HorizontalAlignment="Center" Margin="0 0 0 8" />
+                        <TextBlock Grid.Row="12" Grid.Column="2" Text="{Binding PercentVitaminB9Ug}" HorizontalAlignment="Center" Foreground="#0066CC" FontWeight="SemiBold" Margin="0 0 0 8" />
+                        <TextBlock Grid.Row="12" Grid.Column="3" Text="{Binding Per100gVitaminB9Ug, StringFormat={}{0:N1} μg}" HorizontalAlignment="Center" Foreground="#666666" Margin="0 0 0 8" />
+                        <TextBlock Grid.Row="12" Grid.Column="4" Text="{Binding Per100gPercentVitaminB9Ug}" HorizontalAlignment="Center" Foreground="#999999" Margin="0 0 0 8" />
+
+                        <TextBlock Grid.Row="13" Grid.Column="0" Text="비타민 B12/코발라민" FontWeight="SemiBold" />
+                        <TextBlock Grid.Row="13" Grid.Column="1" Text="{Binding TotalVitaminB12Ug, StringFormat={}{0:N2} μg}" HorizontalAlignment="Center" />
+                        <TextBlock Grid.Row="13" Grid.Column="2" Text="{Binding PercentVitaminB12Ug}" HorizontalAlignment="Center" Foreground="#0066CC" FontWeight="SemiBold" />
+                        <TextBlock Grid.Row="13" Grid.Column="3" Text="{Binding Per100gVitaminB12Ug, StringFormat={}{0:N2} μg}" HorizontalAlignment="Center" Foreground="#666666" />
+                        <TextBlock Grid.Row="13" Grid.Column="4" Text="{Binding Per100gPercentVitaminB12Ug}" HorizontalAlignment="Center" Foreground="#999999" />
+                    </Grid>
+                </GroupBox>
+            </StackPanel>
+        </ScrollViewer>
+
+        <!-- 하단: 닫기 버튼 -->
+        <Button Grid.Row="2"
+                Content="닫기"
+                Width="100"
+                Height="35"
+                HorizontalAlignment="Right"
+                Margin="0 16 0 0"
+                Click="CloseButton_Click" />
+    </Grid>
+</Window>

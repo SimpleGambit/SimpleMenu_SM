@@ -1,0 +1,241 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\dev\\SimpleMenu\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\dev\\SimpleMenu\\NutritionOptimizer.UI\\data\\targets.csv||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:NutritionOptimizer.UI\\data\\targets.csv||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\dev\\SimpleMenu\\NutritionOptimizer.UI\\data\\foods.csv||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:NutritionOptimizer.UI\\data\\foods.csv||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\dev\\SimpleMenu\\NutritionOptimizer.UI\\Views\\MainWindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:NutritionOptimizer.UI\\Views\\MainWindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\dev\\SimpleMenu\\NutritionOptimizer.UI\\Views\\MainWindow.xaml||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:NutritionOptimizer.UI\\Views\\MainWindow.xaml||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\dev\\SimpleMenu\\NutritionOptimizer.UI\\ViewModels\\MainViewModel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:NutritionOptimizer.UI\\ViewModels\\MainViewModel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\dev\\SimpleMenu\\NutritionOptimizer.UI\\NutritionOptimizer.UI.csproj||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:NutritionOptimizer.UI\\NutritionOptimizer.UI.csproj||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\dev\\SimpleMenu\\NutritionOptimizer.UI\\App.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:NutritionOptimizer.UI\\App.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\dev\\SimpleMenu\\NutritionOptimizer.UI\\App.xaml||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:NutritionOptimizer.UI\\App.xaml||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\dev\\SimpleMenu\\NutritionOptimizer.Optimization\\NutritionOptimizer.Optimization.csproj||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:NutritionOptimizer.Optimization\\NutritionOptimizer.Optimization.csproj||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\dev\\SimpleMenu\\NutritionOptimizer.Optimization\\DietOptimizer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:NutritionOptimizer.Optimization\\DietOptimizer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\dev\\SimpleMenu\\NutritionOptimizer.Infrastructure\\NutritionOptimizer.Infrastructure.csproj||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:NutritionOptimizer.Infrastructure\\NutritionOptimizer.Infrastructure.csproj||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\dev\\SimpleMenu\\NutritionOptimizer.Infrastructure\\CsvRepositories.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:NutritionOptimizer.Infrastructure\\CsvRepositories.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\dev\\SimpleMenu\\NutritionOptimizer.Domain\\Models.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:NutritionOptimizer.Domain\\Models.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "targets.csv",
+              "DocumentMoniker": "C:\\dev\\SimpleMenu\\NutritionOptimizer.UI\\data\\targets.csv",
+              "RelativeDocumentMoniker": "NutritionOptimizer.UI\\data\\targets.csv",
+              "ToolTip": "C:\\dev\\SimpleMenu\\NutritionOptimizer.UI\\data\\targets.csv",
+              "RelativeToolTip": "NutritionOptimizer.UI\\data\\targets.csv",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002120|",
+              "WhenOpened": "2025-10-01T00:13:45.886Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "foods.csv",
+              "DocumentMoniker": "C:\\dev\\SimpleMenu\\NutritionOptimizer.UI\\data\\foods.csv",
+              "RelativeDocumentMoniker": "NutritionOptimizer.UI\\data\\foods.csv",
+              "ToolTip": "C:\\dev\\SimpleMenu\\NutritionOptimizer.UI\\data\\foods.csv",
+              "RelativeToolTip": "NutritionOptimizer.UI\\data\\foods.csv",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAA4AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002120|",
+              "WhenOpened": "2025-10-01T00:13:28.861Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "MainWindow.xaml.cs",
+              "DocumentMoniker": "C:\\dev\\SimpleMenu\\NutritionOptimizer.UI\\Views\\MainWindow.xaml.cs",
+              "RelativeDocumentMoniker": "NutritionOptimizer.UI\\Views\\MainWindow.xaml.cs",
+              "ToolTip": "C:\\dev\\SimpleMenu\\NutritionOptimizer.UI\\Views\\MainWindow.xaml.cs",
+              "RelativeToolTip": "NutritionOptimizer.UI\\Views\\MainWindow.xaml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-01T00:13:00.677Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "MainWindow.xaml",
+              "DocumentMoniker": "C:\\dev\\SimpleMenu\\NutritionOptimizer.UI\\Views\\MainWindow.xaml",
+              "RelativeDocumentMoniker": "NutritionOptimizer.UI\\Views\\MainWindow.xaml",
+              "ToolTip": "C:\\dev\\SimpleMenu\\NutritionOptimizer.UI\\Views\\MainWindow.xaml",
+              "RelativeToolTip": "NutritionOptimizer.UI\\Views\\MainWindow.xaml",
+              "ViewState": "AgIAADQAAAAAAAAAAAAAwFMAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-10-01T00:12:43.626Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "MainViewModel.cs",
+              "DocumentMoniker": "C:\\dev\\SimpleMenu\\NutritionOptimizer.UI\\ViewModels\\MainViewModel.cs",
+              "RelativeDocumentMoniker": "NutritionOptimizer.UI\\ViewModels\\MainViewModel.cs",
+              "ToolTip": "C:\\dev\\SimpleMenu\\NutritionOptimizer.UI\\ViewModels\\MainViewModel.cs",
+              "RelativeToolTip": "NutritionOptimizer.UI\\ViewModels\\MainViewModel.cs",
+              "ViewState": "AgIAAF8AAAAAAAAAAAAQwHIAAAAZAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-01T00:12:21.888Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "NutritionOptimizer.UI.csproj",
+              "DocumentMoniker": "C:\\dev\\SimpleMenu\\NutritionOptimizer.UI\\NutritionOptimizer.UI.csproj",
+              "RelativeDocumentMoniker": "NutritionOptimizer.UI\\NutritionOptimizer.UI.csproj",
+              "ToolTip": "C:\\dev\\SimpleMenu\\NutritionOptimizer.UI\\NutritionOptimizer.UI.csproj",
+              "RelativeToolTip": "NutritionOptimizer.UI\\NutritionOptimizer.UI.csproj",
+              "ViewState": "AgIAABQAAAAAAAAAAAAuwCUAAAAKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-10-01T00:11:52.41Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "App.xaml.cs",
+              "DocumentMoniker": "C:\\dev\\SimpleMenu\\NutritionOptimizer.UI\\App.xaml.cs",
+              "RelativeDocumentMoniker": "NutritionOptimizer.UI\\App.xaml.cs",
+              "ToolTip": "C:\\dev\\SimpleMenu\\NutritionOptimizer.UI\\App.xaml.cs",
+              "RelativeToolTip": "NutritionOptimizer.UI\\App.xaml.cs",
+              "ViewState": "AgIAABEAAAAAAAAAAAAQwCYAAAAOAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-01T00:11:38.784Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "App.xaml",
+              "DocumentMoniker": "C:\\dev\\SimpleMenu\\NutritionOptimizer.UI\\App.xaml",
+              "RelativeDocumentMoniker": "NutritionOptimizer.UI\\App.xaml",
+              "ToolTip": "C:\\dev\\SimpleMenu\\NutritionOptimizer.UI\\App.xaml",
+              "RelativeToolTip": "NutritionOptimizer.UI\\App.xaml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAOAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-10-01T00:11:09.227Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "NutritionOptimizer.Optimization.csproj",
+              "DocumentMoniker": "C:\\dev\\SimpleMenu\\NutritionOptimizer.Optimization\\NutritionOptimizer.Optimization.csproj",
+              "RelativeDocumentMoniker": "NutritionOptimizer.Optimization\\NutritionOptimizer.Optimization.csproj",
+              "ToolTip": "C:\\dev\\SimpleMenu\\NutritionOptimizer.Optimization\\NutritionOptimizer.Optimization.csproj",
+              "RelativeToolTip": "NutritionOptimizer.Optimization\\NutritionOptimizer.Optimization.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-10-01T00:10:44.283Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "DietOptimizer.cs",
+              "DocumentMoniker": "C:\\dev\\SimpleMenu\\NutritionOptimizer.Optimization\\DietOptimizer.cs",
+              "RelativeDocumentMoniker": "NutritionOptimizer.Optimization\\DietOptimizer.cs",
+              "ToolTip": "C:\\dev\\SimpleMenu\\NutritionOptimizer.Optimization\\DietOptimizer.cs",
+              "RelativeToolTip": "NutritionOptimizer.Optimization\\DietOptimizer.cs",
+              "ViewState": "AgIAAHwAAAAAAAAAAAAswJQAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-01T00:10:21.075Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "NutritionOptimizer.Infrastructure.csproj",
+              "DocumentMoniker": "C:\\dev\\SimpleMenu\\NutritionOptimizer.Infrastructure\\NutritionOptimizer.Infrastructure.csproj",
+              "RelativeDocumentMoniker": "NutritionOptimizer.Infrastructure\\NutritionOptimizer.Infrastructure.csproj",
+              "ToolTip": "C:\\dev\\SimpleMenu\\NutritionOptimizer.Infrastructure\\NutritionOptimizer.Infrastructure.csproj",
+              "RelativeToolTip": "NutritionOptimizer.Infrastructure\\NutritionOptimizer.Infrastructure.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-10-01T00:09:12.959Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "CsvRepositories.cs",
+              "DocumentMoniker": "C:\\dev\\SimpleMenu\\NutritionOptimizer.Infrastructure\\CsvRepositories.cs",
+              "RelativeDocumentMoniker": "NutritionOptimizer.Infrastructure\\CsvRepositories.cs",
+              "ToolTip": "C:\\dev\\SimpleMenu\\NutritionOptimizer.Infrastructure\\CsvRepositories.cs",
+              "RelativeToolTip": "NutritionOptimizer.Infrastructure\\CsvRepositories.cs",
+              "ViewState": "AgIAAFkAAAAAAAAAAAAswGkAAAA4AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-01T00:08:23.019Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "Models.cs",
+              "DocumentMoniker": "C:\\dev\\SimpleMenu\\NutritionOptimizer.Domain\\Models.cs",
+              "RelativeDocumentMoniker": "NutritionOptimizer.Domain\\Models.cs",
+              "ToolTip": "C:\\dev\\SimpleMenu\\NutritionOptimizer.Domain\\Models.cs",
+              "RelativeToolTip": "NutritionOptimizer.Domain\\Models.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAswBEAAAASAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-01T00:07:38.279Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
