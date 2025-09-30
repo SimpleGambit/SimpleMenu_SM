@@ -1,0 +1,16 @@
+{
+  "version": 2,
+  "dgSpecHash": "8+6xSsycJTU=",
+  "success": true,
+  "projectFilePath": "C:\\dev\\SimpleMenu\\NutritionOptimizer.Optimization\\NutritionOptimizer.Optimization.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\PC\\.nuget\\packages\\google.ortools\\9.9.3963\\google.ortools.9.9.3963.nupkg.sha512",
+    "C:\\Users\\PC\\.nuget\\packages\\google.ortools.runtime.linux-arm64\\9.9.3963\\google.ortools.runtime.linux-arm64.9.9.3963.nupkg.sha512",
+    "C:\\Users\\PC\\.nuget\\packages\\google.ortools.runtime.linux-x64\\9.9.3963\\google.ortools.runtime.linux-x64.9.9.3963.nupkg.sha512",
+    "C:\\Users\\PC\\.nuget\\packages\\google.ortools.runtime.osx-arm64\\9.9.3963\\google.ortools.runtime.osx-arm64.9.9.3963.nupkg.sha512",
+    "C:\\Users\\PC\\.nuget\\packages\\google.ortools.runtime.osx-x64\\9.9.3963\\google.ortools.runtime.osx-x64.9.9.3963.nupkg.sha512",
+    "C:\\Users\\PC\\.nuget\\packages\\google.ortools.runtime.win-x64\\9.9.3963\\google.ortools.runtime.win-x64.9.9.3963.nupkg.sha512",
+    "C:\\Users\\PC\\.nuget\\packages\\google.protobuf\\3.25.3\\google.protobuf.3.25.3.nupkg.sha512"
+  ],
+  "logs": []
+}

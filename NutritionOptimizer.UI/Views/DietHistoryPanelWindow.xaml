@@ -1,0 +1,48 @@
+<Window x:Class="NutritionOptimizer.UI.Views.DietHistoryPanelWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="식단 히스토리"
+        Height="600"
+        Width="900"
+        WindowStartupLocation="CenterScreen">
+    <Grid Margin="12">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <!-- 상단 컨트롤 -->
+        <GroupBox Grid.Row="0" Header="조회 기간" Margin="0 0 0 8">
+            <StackPanel Orientation="Horizontal" Margin="8">
+                <TextBlock Text="시작:" VerticalAlignment="Center" Margin="0 0 4 0" />
+                <DatePicker SelectedDate="{Binding HistoryStartDate, Converter={StaticResource DateOnlyConverter}}" Width="130" Margin="0 0 16 0" />
+                <TextBlock Text="종료:" VerticalAlignment="Center" Margin="0 0 4 0" />
+                <DatePicker SelectedDate="{Binding HistoryEndDate, Converter={StaticResource DateOnlyConverter}}" Width="130" Margin="0 0 16 0" />
+                <Button Content="🔍 조회" Command="{Binding LoadDietHistoriesCommand}" Width="70" Margin="0 0 8 0" />
+                <Button Content="➕ 추가" Command="{Binding AddDietHistoryCommand}" Width="70" Margin="0 0 8 0" />
+                <Button Content="✏️ 수정" Command="{Binding EditDietHistoryCommand}" Width="70" Margin="0 0 8 0" />
+                <Button Content="🗑️ 삭제" Command="{Binding DeleteDietHistoryCommand}" Width="70" Margin="0 0 8 0" />
+                <Button Content="📂 식단보기" Command="{Binding LoadDietFromHistoryCommand}" Width="90" />
+            </StackPanel>
+        </GroupBox>
+
+        <!-- 히스토리 목록 -->
+        <DataGrid Grid.Row="1"
+                  ItemsSource="{Binding DietHistories}"
+                  SelectedItem="{Binding SelectedDietHistory}"
+                  AutoGenerateColumns="False"
+                  IsReadOnly="True"
+                  SelectionMode="Single"
+                  AlternatingRowBackground="#F9F9F9">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="날짜" Binding="{Binding Date, StringFormat=yyyy-MM-dd}" Width="100" />
+                <DataGridTextColumn Header="식사" Binding="{Binding MealType}" Width="80" />
+                <DataGridTextColumn Header="식단명" Binding="{Binding SavedDietName}" Width="*" />
+                <DataGridTextColumn Header="메모" Binding="{Binding Notes}" Width="*" />
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Window>

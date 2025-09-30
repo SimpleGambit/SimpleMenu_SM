@@ -1,0 +1,225 @@
+﻿<Window x:Class="NutritionOptimizer.UI.Views.NutritionTemplateManagerWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="영양성분 템플릿 관리"
+        Height="700"
+        Width="1000"
+        WindowStartupLocation="CenterOwner">
+    <Window.Resources>
+        <!-- 헤더 중앙 정렬 -->
+        <Style x:Key="CenterHeaderStyle" TargetType="DataGridColumnHeader">
+            <Setter Property="HorizontalContentAlignment" Value="Center" />
+        </Style>
+        <!-- 숫자 우측 정렬 -->
+        <Style x:Key="RightAlignCell" TargetType="TextBlock">
+            <Setter Property="HorizontalAlignment" Value="Right" />
+            <Setter Property="Margin" Value="0,0,8,0" />
+        </Style>
+        <!-- 셀 중앙 정렬 -->
+        <Style x:Key="CenterAlignCell" TargetType="TextBlock">
+            <Setter Property="HorizontalAlignment" Value="Center" />
+        </Style>
+    </Window.Resources>
+    
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <!-- 제목 -->
+        <TextBlock Grid.Row="0"
+                   Text="영양성분 템플릿 관리"
+                   FontSize="18"
+                   FontWeight="Bold"
+                   Margin="0 0 0 16" />
+
+        <!-- 탭 컨트롤 -->
+        <TabControl Grid.Row="1">
+            <!-- 템플릿 목록 탭 -->
+            <TabItem Header="📋 템플릿 목록">
+                <Grid Margin="12">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                    <!-- 검색 영역 -->
+                    <GroupBox Grid.Row="0" Header="🔍 검색" Padding="12" Margin="0 0 0 12">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+
+                            <TextBox Grid.Column="0"
+                                     x:Name="SearchTextBox"
+                                     Height="32"
+                                     VerticalContentAlignment="Center"
+                                     Margin="0 0 8 0"
+                                     KeyDown="SearchTextBox_KeyDown">
+                                <TextBox.Style>
+                                    <Style TargetType="TextBox">
+                                        <Style.Triggers>
+                                            <Trigger Property="Text" Value="">
+                                                <Setter Property="Background">
+                                                    <Setter.Value>
+                                                        <VisualBrush Stretch="None" AlignmentX="Left">
+                                                            <VisualBrush.Visual>
+                                                                <TextBlock Text="이름, 브랜드, 구분, 분류로 검색..."
+                                                                           Foreground="LightGray"
+                                                                           Margin="5,0,0,0"
+                                                                           VerticalAlignment="Center" />
+                                                            </VisualBrush.Visual>
+                                                        </VisualBrush>
+                                                    </Setter.Value>
+                                                </Setter>
+                                            </Trigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </TextBox.Style>
+                            </TextBox>
+
+                            <Button Grid.Column="1"
+                                    Content="🔍 검색"
+                                    Width="80"
+                                    Height="32"
+                                    Margin="0 0 8 0"
+                                    Click="SearchButton_Click" />
+
+                            <Button Grid.Column="2"
+                                    Content="↻ 초기화"
+                                    Width="80"
+                                    Height="32"
+                                    Click="ResetSearchButton_Click" />
+                        </Grid>
+                    </GroupBox>
+
+                    <!-- 버튼 -->
+                    <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0 0 0 12">
+                        <Button Content="➕ 추가" Width="80" Height="32" Margin="0 0 8 0" Click="AddButton_Click" />
+                        <Button Content="✏️ 수정" Width="80" Height="32" Margin="0 0 8 0" Click="EditButton_Click" />
+                        <Button Content="🗑️ 삭제" Width="80" Height="32" Margin="0 0 8 0" Click="DeleteButton_Click" />
+                        <Button Content="🗑️ 다중 삭제" Width="100" Height="32" Click="DeleteSelectedButton_Click" />
+                    </StackPanel>
+
+                    <!-- 템플릿 목록 -->
+                    <DataGrid Grid.Row="2"
+                              x:Name="TemplatesDataGrid"
+                              AutoGenerateColumns="False"
+                              IsReadOnly="True"
+                              SelectionMode="Extended"
+                              AlternatingRowBackground="#F9F9F9"
+                              MouseDoubleClick="TemplatesDataGrid_MouseDoubleClick"
+                              SelectionChanged="TemplatesDataGrid_SelectionChanged">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="이름" Binding="{Binding Name}" Width="160" HeaderStyle="{StaticResource CenterHeaderStyle}" />
+                            <DataGridTextColumn Header="브랜드" Binding="{Binding Brand}" Width="100" HeaderStyle="{StaticResource CenterHeaderStyle}" ElementStyle="{StaticResource CenterAlignCell}" />
+                            <DataGridTextColumn Header="구분" Binding="{Binding Type}" Width="80" HeaderStyle="{StaticResource CenterHeaderStyle}" ElementStyle="{StaticResource CenterAlignCell}" />
+                            <DataGridTextColumn Header="분류" Binding="{Binding Category}" Width="100" HeaderStyle="{StaticResource CenterHeaderStyle}" ElementStyle="{StaticResource CenterAlignCell}" />
+                            <DataGridTextColumn Header="칼로리" Binding="{Binding Kcal, StringFormat={}{0:N1}}" Width="70" HeaderStyle="{StaticResource CenterHeaderStyle}" ElementStyle="{StaticResource RightAlignCell}" />
+                            <DataGridTextColumn Header="단백질(g)" Binding="{Binding ProteinG, StringFormat={}{0:N1}}" Width="80" HeaderStyle="{StaticResource CenterHeaderStyle}" ElementStyle="{StaticResource RightAlignCell}" />
+                            <DataGridTextColumn Header="지방(g)" Binding="{Binding FatG, StringFormat={}{0:N1}}" Width="70" HeaderStyle="{StaticResource CenterHeaderStyle}" ElementStyle="{StaticResource RightAlignCell}" />
+                            <DataGridTextColumn Header="탄수화물(g)" Binding="{Binding CarbsG, StringFormat={}{0:N1}}" Width="90" HeaderStyle="{StaticResource CenterHeaderStyle}" ElementStyle="{StaticResource RightAlignCell}" />
+                            <DataGridTextColumn Header="식이섬유(g)" Binding="{Binding FiberG, StringFormat={}{0:N1}}" Width="90" HeaderStyle="{StaticResource CenterHeaderStyle}" ElementStyle="{StaticResource RightAlignCell}" />
+                            <DataGridTextColumn Header="나트륨(mg)" Binding="{Binding SodiumMg, StringFormat={}{0:N0}}" Width="90" HeaderStyle="{StaticResource CenterHeaderStyle}" ElementStyle="{StaticResource RightAlignCell}" />
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </TabItem>
+
+            <!-- 가격 이력 탭 -->
+            <TabItem Header="💰 가격 이력">
+                <Grid Margin="12">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                    <!-- 템플릿 선택 -->
+                    <GroupBox Grid.Row="0" Header="템플릿 선택" Padding="12" Margin="0 0 0 12">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock Grid.Column="0"
+                                       Text="템플릿:"
+                                       VerticalAlignment="Center"
+                                       FontWeight="SemiBold"
+                                       Margin="0 0 12 0" />
+
+                            <ComboBox Grid.Column="1"
+                                      x:Name="TemplateComboBox"
+                                      SelectionChanged="TemplateComboBox_SelectionChanged"
+                                      Height="32">
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Text="{Binding Name}" />
+                                            <TextBlock Foreground="Gray" Margin="4 0 0 0">
+                                                <TextBlock.Style>
+                                                    <Style TargetType="TextBlock">
+                                                        <Setter Property="Visibility" Value="Visible" />
+                                                        <Style.Triggers>
+                                                            <DataTrigger Binding="{Binding Brand}" Value="">
+                                                                <Setter Property="Visibility" Value="Collapsed" />
+                                                            </DataTrigger>
+                                                            <DataTrigger Binding="{Binding Brand}" Value="{x:Null}">
+                                                                <Setter Property="Visibility" Value="Collapsed" />
+                                                            </DataTrigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </TextBlock.Style>
+                                                <Run Text="(" />
+                                                <Run Text="{Binding Brand}" />
+                                                <Run Text=")" />
+                                            </TextBlock>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
+                            </ComboBox>
+                        </Grid>
+                    </GroupBox>
+
+                    <!-- 버튼 -->
+                    <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0 0 0 12">
+                        <Button Content="➕ 가격 추가" Width="100" Height="32" Margin="0 0 8 0" Click="AddPriceButton_Click" />
+                        <Button Content="✏️ 가격 수정" Width="100" Height="32" Margin="0 0 8 0" Click="EditPriceButton_Click" />
+                        <Button Content="🗑️ 가격 삭제" Width="100" Height="32" Click="DeletePriceButton_Click" />
+                    </StackPanel>
+
+                    <!-- 가격 이력 목록 -->
+                    <DataGrid Grid.Row="2"
+                              x:Name="PriceHistoriesDataGrid"
+                              AutoGenerateColumns="False"
+                              IsReadOnly="True"
+                              SelectionMode="Single"
+                              AlternatingRowBackground="#F9F9F9"
+                              MouseDoubleClick="PriceHistoriesDataGrid_MouseDoubleClick">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="적용 날짜" Binding="{Binding EffectiveDate, StringFormat=yyyy-MM-dd}" Width="120" HeaderStyle="{StaticResource CenterHeaderStyle}" ElementStyle="{StaticResource CenterAlignCell}" />
+                            <DataGridTextColumn Header="단위" Binding="{Binding WeightUnit}" Width="100" HeaderStyle="{StaticResource CenterHeaderStyle}" ElementStyle="{StaticResource CenterAlignCell}" />
+                            <DataGridTextColumn Header="가격(원)" Binding="{Binding Price, StringFormat={}{0:N0}}" Width="120" HeaderStyle="{StaticResource CenterHeaderStyle}" ElementStyle="{StaticResource RightAlignCell}" />
+                            <DataGridTextColumn x:Name="UnitPriceColumn" Header="100g/100ml당 가격" Binding="{Binding PricePer100g, StringFormat={}{0:N0}원}" Width="140" HeaderStyle="{StaticResource CenterHeaderStyle}" ElementStyle="{StaticResource RightAlignCell}" />
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </TabItem>
+        </TabControl>
+
+        <!-- 닫기 버튼 -->
+        <Button Grid.Row="2"
+                Content="닫기"
+                Width="80"
+                Height="32"
+                HorizontalAlignment="Right"
+                Margin="0 16 0 0"
+                Click="CloseButton_Click" />
+    </Grid>
+</Window>

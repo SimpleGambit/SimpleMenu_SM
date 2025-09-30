@@ -1,0 +1,70 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<OutputType>WinExe</OutputType>
+		<TargetFramework>net8.0-windows7.0</TargetFramework>
+		<UseWPF>true</UseWPF>
+		<Nullable>enable</Nullable>
+		<ImplicitUsings>enable</ImplicitUsings>
+	</PropertyGroup>
+	<ItemGroup>
+		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2" />
+		<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.0" />
+	</ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="$(MSBuildThisFileDirectory)..\NutritionOptimizer.Domain\NutritionOptimizer.Domain.csproj" />
+		<ProjectReference Include="$(MSBuildThisFileDirectory)..\NutritionOptimizer.Infrastructure\NutritionOptimizer.Infrastructure.csproj" />
+		<ProjectReference Include="$(MSBuildThisFileDirectory)..\NutritionOptimizer.Optimization\NutritionOptimizer.Optimization.csproj" />
+	</ItemGroup>
+	<ItemGroup>
+		<Compile Update="App.xaml.cs">
+			<DependentUpon>App.xaml</DependentUpon>
+		</Compile>
+		<Compile Update="Views\MainWindow.xaml.cs">
+			<DependentUpon>MainWindow.xaml</DependentUpon>
+		</Compile>
+		<Compile Update="Views\FoodEditorWindow.xaml.cs">
+			<DependentUpon>FoodEditorWindow.xaml</DependentUpon>
+		</Compile>
+		<Compile Update="Views\TargetEditorWindow.xaml.cs">
+			<DependentUpon>TargetEditorWindow.xaml</DependentUpon>
+		</Compile>
+		<Compile Update="Views\PriceHistoryEditorWindow.xaml.cs">
+			<DependentUpon>PriceHistoryEditorWindow.xaml</DependentUpon>
+		</Compile>
+		<Compile Update="Views\SaveDietWindow.xaml.cs">
+			<DependentUpon>SaveDietWindow.xaml</DependentUpon>
+		</Compile>
+	</ItemGroup>
+	<ItemGroup>
+		<None Update="data\foods.csv">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+		<None Update="data\targets.csv">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+		<None Update="data\prices.csv">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+		<None Update="data\saved_diets.csv">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+		<None Update="data\saved_diet_items.csv">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+		<None Update="data\diet_history.csv">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+		<None Update="data\food_preferences.csv">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+		<None Update="data\price_history.csv">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+		<None Update="data\nutrition_templates.csv">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+		<None Update="data\template_price_history.csv">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+	</ItemGroup>
+</Project>

@@ -1,0 +1,15 @@
+﻿<Application x:Class="NutritionOptimizer.UI.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:converters="clr-namespace:NutritionOptimizer.UI.Converters"
+             ShutdownMode="OnMainWindowClose">
+    <Application.Resources>
+        <converters:DateOnlyToDateTimeConverter x:Key="DateOnlyConverter" />
+        <converters:EditModeTitleConverter x:Key="EditModeTitleConverter" />
+        <converters:TargetEditModeTitleConverter x:Key="EditModeTitleConverter2" />
+        <converters:NutrientKeyToKoreanConverter x:Key="NutrientKeyConverter" />
+        <converters:NullableDoubleConverter x:Key="NullableDoubleConverter" />
+        <converters:CountToVisibilityConverter x:Key="CountToVisibilityConverter" />
+        <converters:RadioButtonConverter x:Key="RadioButtonConverter" />
+    </Application.Resources>
+</Application>

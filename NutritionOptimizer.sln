@@ -1,0 +1,43 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NutritionOptimizer.UI", "NutritionOptimizer.UI\NutritionOptimizer.UI.csproj", "{D3D40BB5-CA55-486C-97FC-076E11695117}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NutritionOptimizer.Domain", "NutritionOptimizer.Domain\NutritionOptimizer.Domain.csproj", "{8B04179C-B535-4E9F-B3F0-A82EBC4D5181}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NutritionOptimizer.Infrastructure", "NutritionOptimizer.Infrastructure\NutritionOptimizer.Infrastructure.csproj", "{71B34561-E1D3-47CF-B3B1-FF746262172A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NutritionOptimizer.Optimization", "NutritionOptimizer.Optimization\NutritionOptimizer.Optimization.csproj", "{6B774BE5-242F-417C-8F2C-9F68F25B2BFB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D3D40BB5-CA55-486C-97FC-076E11695117}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D3D40BB5-CA55-486C-97FC-076E11695117}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D3D40BB5-CA55-486C-97FC-076E11695117}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D3D40BB5-CA55-486C-97FC-076E11695117}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8B04179C-B535-4E9F-B3F0-A82EBC4D5181}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8B04179C-B535-4E9F-B3F0-A82EBC4D5181}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8B04179C-B535-4E9F-B3F0-A82EBC4D5181}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8B04179C-B535-4E9F-B3F0-A82EBC4D5181}.Release|Any CPU.Build.0 = Release|Any CPU
+		{71B34561-E1D3-47CF-B3B1-FF746262172A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{71B34561-E1D3-47CF-B3B1-FF746262172A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{71B34561-E1D3-47CF-B3B1-FF746262172A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{71B34561-E1D3-47CF-B3B1-FF746262172A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6B774BE5-242F-417C-8F2C-9F68F25B2BFB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6B774BE5-242F-417C-8F2C-9F68F25B2BFB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6B774BE5-242F-417C-8F2C-9F68F25B2BFB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6B774BE5-242F-417C-8F2C-9F68F25B2BFB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		    SolutionGuid = {96A139CD-8E52-4708-849A-11D4A8E3AB4E}
+	EndGlobalSection
+EndGlobal

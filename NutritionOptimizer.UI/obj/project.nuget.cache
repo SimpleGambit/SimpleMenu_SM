@@ -1,0 +1,20 @@
+{
+  "version": 2,
+  "dgSpecHash": "MjxqkBTgfZw=",
+  "success": true,
+  "projectFilePath": "C:\\dev\\SimpleMenu\\NutritionOptimizer.UI\\NutritionOptimizer.UI.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\PC\\.nuget\\packages\\communitytoolkit.mvvm\\8.2.2\\communitytoolkit.mvvm.8.2.2.nupkg.sha512",
+    "C:\\Users\\PC\\.nuget\\packages\\csvhelper\\30.0.1\\csvhelper.30.0.1.nupkg.sha512",
+    "C:\\Users\\PC\\.nuget\\packages\\google.ortools\\9.9.3963\\google.ortools.9.9.3963.nupkg.sha512",
+    "C:\\Users\\PC\\.nuget\\packages\\google.ortools.runtime.linux-arm64\\9.9.3963\\google.ortools.runtime.linux-arm64.9.9.3963.nupkg.sha512",
+    "C:\\Users\\PC\\.nuget\\packages\\google.ortools.runtime.linux-x64\\9.9.3963\\google.ortools.runtime.linux-x64.9.9.3963.nupkg.sha512",
+    "C:\\Users\\PC\\.nuget\\packages\\google.ortools.runtime.osx-arm64\\9.9.3963\\google.ortools.runtime.osx-arm64.9.9.3963.nupkg.sha512",
+    "C:\\Users\\PC\\.nuget\\packages\\google.ortools.runtime.osx-x64\\9.9.3963\\google.ortools.runtime.osx-x64.9.9.3963.nupkg.sha512",
+    "C:\\Users\\PC\\.nuget\\packages\\google.ortools.runtime.win-x64\\9.9.3963\\google.ortools.runtime.win-x64.9.9.3963.nupkg.sha512",
+    "C:\\Users\\PC\\.nuget\\packages\\google.protobuf\\3.25.3\\google.protobuf.3.25.3.nupkg.sha512",
+    "C:\\Users\\PC\\.nuget\\packages\\microsoft.extensions.dependencyinjection\\8.0.0\\microsoft.extensions.dependencyinjection.8.0.0.nupkg.sha512",
+    "C:\\Users\\PC\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\8.0.0\\microsoft.extensions.dependencyinjection.abstractions.8.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}

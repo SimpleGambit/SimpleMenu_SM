@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "pVcvSbC6nQs=",
+  "success": true,
+  "projectFilePath": "C:\\dev\\SimpleMenu\\NutritionOptimizer.Infrastructure\\NutritionOptimizer.Infrastructure.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\PC\\.nuget\\packages\\csvhelper\\30.0.1\\csvhelper.30.0.1.nupkg.sha512"
+  ],
+  "logs": []
+}
